@@ -1,0 +1,177 @@
+#divHome{
+    width: 100vw;
+    background-color: var(--darker-background-color);
+    display: flex;
+}
+#sectionEvents{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: var(--darker-background-color);
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    gap: 40px;
+    margin-top: 150px;
+    margin-left: 170px;
+}
+#sectionEvents h2{
+    color: var(--basic-letter-color);
+}
+.eventDiv{
+    width: 550px;
+    height: 180px;
+    border: solid 3px var(--basic-border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--basic-background-color);
+}
+.eventImage{
+    width: 120px;
+    height: 120px;
+}
+.eventDivInfo{
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+}
+.eventDate{
+    font-weight: 700;
+    line-height: 1.3;
+}
+.dateP{
+    color: black;
+    font-weight: 500;
+}
+.eventLocation{
+    font-weight: 700;
+    line-height: 1.3;
+}
+.locationP{
+    color: black;
+    font-weight: 500;
+}
+
+/*810px*/
+@media(max-width: 810px){
+    .eventDiv{
+        width: 450px;
+        height: 150px;
+    }
+    .eventImage{
+        width: 120px;
+        height: 120px;
+    }
+    .eventDivInfo{
+        width: 200px;
+        height: 130px;
+    }
+}
+
+/*700px*/
+@media(max-width: 700px){
+    #sectionEvents{
+        margin-left: 120px;
+    }
+    .eventDiv{
+        width: 350px;
+        height: 150px;
+    }
+    .eventImage{
+        width: 100px;
+        height: 100px;
+    }
+    .eventDivInfo{
+        width: 150px;
+        height: 120px;
+    }
+    .eventDivInfo h3{
+        font-size: medium;
+    }
+    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
+        font-size: small;
+    }
+}
+
+/*550px*/
+@media(max-width: 550px){
+    #sectionEvents{
+        margin-left: 90px;
+    }
+    .eventDiv{
+        width: 290px;
+        height: 130px;
+    }
+    .eventImage{
+        width: 80px;
+        height: 80px;
+    }
+    .eventDivInfo{
+        width: 120px;
+        height: 100px;
+    }
+    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
+        font-size: smaller;
+    }
+}
+
+/*440px*/
+@media(max-width: 440px){
+
+    #sectionEvents{
+        padding-left: 30px;
+        margin-left: 0px;
+    }
+    .eventDiv{
+        width: 290px;
+        height: 130px;
+    }
+    .eventImage{
+        width: 80px;
+        height: 80px;
+    }
+    .eventDivInfo{
+        width: 120px;
+        height: 100px;
+    }
+    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
+        font-size: smaller;
+    }
+}
+
+/*360px*/
+@media(max-width: 360px){
+    #sectionEvents h2{
+        font-size: 25px;
+    }
+    #sectionEvents{
+        padding-left: 25px;
+    }
+    .eventDiv{
+        width: 210px;
+        height: 150px;
+    }
+    .eventImage{
+        width: 60px;
+        height: 60px;
+    }
+    .eventDivInfo{
+        width: 90px;
+        height: 120px;
+    }
+    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
+        font-size: x-small;
+    }
+}
+/*270px*/
+@media(max-width: 270px){
+    #sectionEvents{
+        padding-left: 30px;
+    }
+}

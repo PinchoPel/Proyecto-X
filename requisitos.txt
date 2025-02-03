@@ -1,0 +1,40 @@
+Tema: Gestión de Eventos y Asistentes
+
+Lo más importante de este proyecto serán las buenas prácticas.
+
+Buenos componentes.
+
+Reutilización de funciones.
+
+Buena arquitectura.
+
+Y por supuesto, buena UX/UI, siendo que el usuario no tiene ninguna duda nunca.
+
+La entrega se realizará mediante este apartado, sin embargo, su corrección se hará mediante mensaje privado en el foro, ya que será más cómodo para nosotros puesto que hacemos una corrección más detallada que en los anteriores.
+
+Para la entrega, debéis desplegar tanto el back como el front (a poder ser en vercel) y enviarnos ambos enlaces de github.
+
+El diseño corre de vuestra cuenta en este punto y en próximos, pero eso no quiere decir que lo descuidemos.
+
+y... RECUERDA
+La clave para este proyecto (y todos) es pensar antes de actuar.
+Si cometes errores, los acarrearás hasta el final, cada vez que realices algo de código, piensa en si es la mejor manera de hacerlo!!!
+
+
+
+
+Requisitos
+Backend (Express, JSON Web Token, Bcrypt, Mongoose, CORS, Nodemon) OK
+Crea un modelo de usuario que almacene información como nombre, correo electrónico y contraseña (hashed). Crea un modelo de evento con información como título, fecha, ubicación y descripción y un array de asistentes que serán ids de usuarios. OK
+Implementa un middleware que verifica la presencia y validez del token en las rutas protegidas. Protege las rutas que permiten acciones exclusivas para usuarios autenticados. OK
+Subida de ficheros (por ejemplo: avatares o carteles de eventos) OK
+Controladores que ordenen la información bajo algún criterio OK
+Controladores que inserten un elemento de una colección en otra OK
+Implementa un formulario de inicio de sesión para que los usuarios ingresen al sistema. Si no existiera, registrar un nuevo usuario. El registro, nos hace login después de registrarnos para ahorrar un paso innecesario al usuario. OK
+
+Los fetchs están reutilizados a través de una única función que me permita hacer todos mediante el uso de la misma.
+Muestra la lista de eventos disponibles. Los usuarios autenticados verán opciones adicionales para crear eventos y confirmar asistencia
+Permite a los usuarios explorar detalles de cada evento y la lista de asistentes
+Implementa manejo de errores adecuado en el frontend y el backend. Todos los formularios del frontend tienen control de errores que pase lo que pase se informa al usuario de lo que ha pasado.
+Todos los procesos asíncronos le muestran un loading de alguna manera al usuario, para que este tenga una respuesta inmediata ante su acción
+Mucho cariño a la componentización, no se repite código en ningún momento.

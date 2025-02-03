@@ -1,0 +1,107 @@
+const { delCloudinary } = require("../../utils/deleteInCloudinary");
+const Event = require("../models/events");
+
+
+const getEvents = async (req,res) => {
+    try {
+        let dir = parseInt(req.params.order); 
+        const allEvents = await Event.find().sort({ date: parseInt(dir) }).populate({path:"participants" , select: " -_id -password -email -role"});
+        return res.status(200).json(allEvents);
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const getSingleEvent = async (req,res,next) => {
+    try {
+        let {id} = req.params;
+        let singleEvent = await Event.findById(id).populate({path:"participants",select: " -_id -password -email -role"});
+        return res.status(200).json(singleEvent);
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const searchByTag = async (req,res,next) => {
+    try {
+        let {tag} = req.params;
+        let searchedTag = await Event.find({tags: tag});
+        return res.status(200).json(searchedTag);
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const searchByLocation = async (req,res,next) => {
+    try {
+        let {province} = req.params;
+        let events = await Event.find({location: province});
+        return res.status(200).json(events);
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const searchByRangeDate = async (req, res, next) => { 
+    try {
+        let {startDate, endDate} = req.params;
+        const start = new Date(`${startDate}T00:00:00.000Z`);
+        const end = new Date(`${endDate}T23:59:59.999Z`);
+        const event = await Event.find({
+            date: { $gte: start, $lte: end },
+        })
+        return res.status(200).json(event);
+    } catch (error) {
+        return res.status(400).json("No hay eventos en esas fechas")
+    }
+}
+
+const postEvent = async (req,res,next) => {
+    try {
+        let newEvent = new Event({
+            title: req.body.title,
+            image: req.file.path,
+            date: req.body.date,
+            author: req.user.name,
+            location: req.body.location,
+            tags: req.body.tags,
+            description: req.body.description
+        })
+
+        newEvent.participants.push(req.user._id)
+        await newEvent.save();
+        return res.status(200).json(newEvent);
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const modifyEvent = async (req,res,next) => {
+    try {
+        let {id} = req.params;
+        let {author, ...updateEvent} = req.body;
+        let eventToModify = await Event.findById(id);
+        if (req.file) {
+            delCloudinary(eventToModify.image);
+            updateEvent.image = req.file.path;
+        }
+        let modifiedEvent = await Event.findByIdAndUpdate(id, updateEvent, { new: true, runValidators: true });
+        return res.status(200).json(modifiedEvent); 
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+const deleteEvent = async (req,res,next) => {
+    try {
+        let {id} = req.params;
+        let deletedEvent = await Event.findById(id);
+        delCloudinary(deletedEvent.image);
+        await Event.findByIdAndDelete(id);
+        return res.status(200).json({message: `El evento ${deletedEvent.title} ha sido borrado`,deletedEvent});
+    } catch (error) {
+        return res.status(400).json("Ha fallado la petición")
+    }
+};
+
+module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate};

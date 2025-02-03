@@ -1,0 +1,19 @@
+dentro de cada usuario dos colecciones: eventos creados por sí mismo y eventos a los que asiste
+darle etiquetas a los eventos
+TEMA OSCURO
+MODIFICAR EL BUTTON HOME DE LOGIN: habría que hacer que redirija a una url en lugar de usar innerhtml
+
+EVENTOS: 
+ver todos los eventos: lo puede hacer cualquiera
+crear un evento: cualquier usuario logado
+modificar un evento: solo el creador o el admin
+borrar evento: solo creador, el admin o automáticamente al alcanzar la fecha(si no se puede borrar automáticamente, que sea invisible o se deja para subir fotografías del evento ya pasado, se hace un array para que la suban los usuarios)
+
+en los eventos poder añadir etiquetas
+
+REGISTRO:
+mandar email de REGISTRO OK
+cargar home una vez registrado pero con el navBar cambiado OK
+
+MENÚ FILTROS MÓVIL:
+debajo del header, cuando se haga clic, aparece el menú de filtros, si se puede con una transición suave. En móvil oculto, dejar unabarra horizontal con una lupa en el centro, cuando se muestre, aparece por el lateral con z-index 1 sin desplazamiento de evento. Cuando se hace clic y se filtra, vuelve a estar oculto. Añadir botón de limpiar filtrros

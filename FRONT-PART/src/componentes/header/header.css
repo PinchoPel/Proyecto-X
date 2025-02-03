@@ -1,0 +1,17 @@
+header{
+    height: 120px;
+    width: 100vw;
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--header-background-color);
+}
+
+h1{
+    color: var(--h1-color);
+    font-size: 40px;
+    cursor: pointer;
+    margin-left: 70px;
+}

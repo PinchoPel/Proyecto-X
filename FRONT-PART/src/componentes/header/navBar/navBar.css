@@ -1,0 +1,9 @@
+a{
+    color: palevioletred;
+}
+
+nav{
+    margin-top: 20px;
+    border-top: solid 1px var(--basic-letter-color);
+    height: 30px;
+}

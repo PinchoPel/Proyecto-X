@@ -1,0 +1,32 @@
+import { createHeader } from "../../componentes/header/header.js";
+import { createMain } from "../../componentes/main/main.js";
+
+
+
+export const loginFetch = async (userNameEmail, password) => {
+    const response = await fetch("http://localhost:3000/api/v1/users/login",{
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json" 
+        },
+    body: JSON.stringify({
+        userNameEmail,
+        password
+        })
+    });
+if (!response.ok) {
+    const error = await response.json();
+    if (!document.querySelector(".errorLoginMessage")) {
+        const divLogin = document.querySelector("#divLogin");
+        const errorFormMessage = document.createElement("p");
+        errorFormMessage.classList.add( "errorLoginMessage", "errorFormMessage");
+        errorFormMessage.textContent = error;
+        divLogin.append(errorFormMessage);
+    }
+    return;
+}
+    const responseToken = await response.json();
+    localStorage.setItem("userToken", responseToken.token)
+    createHeader();
+    createMain();
+};

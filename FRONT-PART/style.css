@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  :root{
+    --header-background-color: rgb(100, 187, 197);
+    --h1-color:rgb(51, 122, 100);
+    --basic-background-color: rgb(175, 210, 210);
+    --darker-background-color: rgb(127, 195, 195);
+    --aside-background-color: rgb(130, 225, 196);
+    --basic-border-color: rgb(105, 122, 162);
+    --basic-letter-color: rgb(47, 82, 164);
+    --basic-input-color: rgb(238, 249, 251);
+    --basic-button-color: rgb(127, 199, 230);
+    --error-message-color: rgb(255,0,0);
+  }
+  html{
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+  body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+li{
+    list-style: none;
+  }
+  
+  a{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  button{
+    cursor: pointer;
+  }

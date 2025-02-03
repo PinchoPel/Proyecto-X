@@ -1,0 +1,58 @@
+/*
+<form id="busqueda-por-fechas">
+  <fieldset>
+    <legend>Buscar por intervalo de fechas</legend>
+
+    <label for="fecha-inicio">Fecha de inicio:</label>
+    <input type="date" id="fecha-inicio" name="fecha-inicio" required>
+
+    <label for="fecha-fin">Fecha final:</label>
+    <input type="date" id="fecha-fin" name="fecha-fin" required>
+
+    <button type="submit">Buscar</button>
+  </fieldset>
+</form>
+
+
+//**************************************************************
+
+function ordenarEventos(eventos, criterio) {
+  if (criterio === "fechaDesc") {
+    return eventos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+  } else if (criterio === "fechaAsc") {
+    return eventos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  } else if (criterio === "nombre") {
+    return eventos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }
+}
+
+// Ejemplo de uso
+const eventosOrdenados = ordenarEventos(eventos, "fechaDesc");
+console.log(eventosOrdenados);
+
+
+//****************************************************</fieldset>
+
+const eventos = [
+  { nombre: "Evento A", fecha: "2025-01-30" },
+  { nombre: "Evento B", fecha: "2025-01-25" },
+  { nombre: "Evento C", fecha: "2025-02-01" },
+];
+
+// Ordenar por fecha descendente (más reciente primero)
+eventos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+console.log(eventos);
+/*
+[
+  { nombre: "Evento C", fecha: "2025-02-01" },
+  { nombre: "Evento A", fecha: "2025-01-30" },
+  { nombre: "Evento B", fecha: "2025-01-25" }
+]
+*/
+
+
+//*******************************
+
+
+
