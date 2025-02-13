@@ -1,10 +1,10 @@
 import { linkCSS } from "../../../componentes/common/linkCSS.js";
 import { waitForDOM } from "../../../componentes/common/waitForDOM.js";
 import { eventsFetch } from "../section/eventsFetch.js";
+import { renderEvents } from "../section/renderEvents.js";
 import { dataFilter } from "./dataFilter.js";
 import { elementToClean } from "./elementToClean.js";
 import { noEvents } from "./noEvents.js";
-import { renderEvents } from "./renderEvents.js";
 linkCSS("./src/pages/home/aside/aside.css");
 
 export const asideToggle = (aside, div, image) => {
@@ -22,89 +22,86 @@ export const asideToggle = (aside, div, image) => {
     }
 };
 
+let filteredEvents = []; 
 let objectFilter = {
-    startdate: null,
-    enddate: null,
-    province: null,
-    tag: null
-  };
-  
-let rangeDateFiltered = [];
-let provinceFiltered = [];
-let tagFiltered = [];
+  startdate: null,
+  enddate: null,
+  province: null,
+  tag: null
+};
+let dir = 1;
 
-function renderFiltered() {
-    const filteredEvent = dataFilter([rangeDateFiltered, provinceFiltered, tagFiltered], objectFilter);
-    return filteredEvent;
-  };
-const filteredEvent = renderFiltered();
+export async function applyFilters() {
+  const events = dataFilter([filteredEvents], objectFilter);
+  events.sort((a, b) => dir*(new Date(a.date) - new Date(b.date)));
+  await renderEvents(events);
+  await noEvents("No hay eventos según los criterios de búsqueda seleccionados");
+};
 
-let dir = -1;
-waitForDOM("#descendentDate")
-.then(boton => {boton.addEventListener("click", async () => {
+waitForDOM("#descendentDate").then(boton => {boton.addEventListener("click", async () => {
         try {
-            const events = await eventsFetch(`orderdates/${dir}`);
-            await renderEvents(events);
+            const order = await eventsFetch(`orderdates/${dir}`);
+            filteredEvents = order;
             dir *= -1;
+            await applyFilters();
         } catch (error) {
           console.error('No se han ordenado los eventos por fechas');
         }
   });
 });
 
-waitForDOM("#rangeDateStartInput", "#rangeDateEndInput", "#rangeDateForm")
-.then(([inputStart, inputEnd, form]) => {
+waitForDOM("#rangeDateStartInput", "#rangeDateEndInput", "#rangeDateForm").then(([inputStart, inputEnd, form]) => {
     form.addEventListener("submit", async (event) => {
         try {
             event.preventDefault();
+            objectFilter.startdate = inputStart.value || null;
+            objectFilter.enddate = inputEnd.value || null;
             const range = await eventsFetch(`rangedates/${inputStart.value}/to/${inputEnd.value}`);
-            rangeDateFiltered = range;
-            objectFilter.startdate = inputStart.value;
-            objectFilter.enddate = inputEnd.value;
-            await renderEvents(range)
-            noEvents("No hay eventos para esas fechas");
+            filteredEvents = range; 
+            await applyFilters();
         } catch (error) {
-            console.info('No hay eventos en ese rango de fechas');
+            if (filteredEvents.length === 0 ) {
+                console.info('No hay eventos para esas fechas');
+            }
         }
     });
 });
 
-waitForDOM("#searchByProvince")
-.then(province => {
+waitForDOM("#searchByProvince").then(province => {
     province.addEventListener("change", async (event) => {
         try {
             event.preventDefault();  
-            const provinces = await eventsFetch(`/eventlocation/${event.target.value}`);
-            provinceFiltered = provinces;         
-            objectFilter.province = event.target.value;
-            await renderEvents(provinces);
-            await noEvents("No hay eventos para la provincia seleccionada, podrías crear el primer evento");
-            document.querySelector("#firstOptionProvince").remove();         
+            objectFilter.province = event.target.value !== document.querySelector("#firstOptionProvince") ? event.target.value : null;
+            const provinces = await eventsFetch(`/eventlocation/${objectFilter.province}`);
+            filteredEvents = provinces; 
+            await applyFilters();
+            document.querySelector("#firstOptionProvince").remove(); 
         } catch (error) {
-            console.info('No hay eventos en esa provincia');
+            if (filteredEvents.length === 0 ) {
+                console.info('No hay eventos para la provincia seleccionada');
+            }
         }
     })
 });
 
-waitForDOM("#searchByTag")
-.then(tag => {
+waitForDOM("#searchByTag").then(tag => {
     tag.addEventListener("change", async (event) => {
         try {
             event.preventDefault();
-            const tags = await eventsFetch(`eventstag/${event.target.value}`);
-            tagFiltered = tags;
-            objectFilter.tag = event.target.value;
-            await renderEvents(tags);
-            await noEvents("No hay eventos para el interés seleccionado, podrías crear el primer evento");
-            document.querySelector("#firstOptionTag").remove();   
+            objectFilter.tag = event.target.value !== document.querySelector("#firstOptionTag") ? event.target.value : null;
+            const tags = await eventsFetch(`eventstag/${objectFilter.tag}`);
+            filteredEvents = tags;
+            await applyFilters();
+            document.querySelector("#firstOptionTag").remove(); 
         } catch (error) {;
-            console.info('No hay eventos para el interés seleccionado');
+            if (filteredEvents.length === 0 ) {
+                console.info('No hay eventos para el interés seleccionado');
+            }
         }
     })
 });
 
-waitForDOM("#cleanFilters")
-.then( clean => {
+waitForDOM("#cleanFilters").then( clean => {
         clean.addEventListener("click", async () => {
         const events = await eventsFetch("orderdates/1");
         await renderEvents(events);
@@ -120,8 +117,6 @@ waitForDOM("#cleanFilters")
         objectFilter.enddate = null;
         objectFilter.province = null;
         objectFilter.tag = null;   
-        rangeDateFiltered = [];
-        provinceFiltered = [];
-        tagFiltered = [];
+        filteredEvents.length = 0; 
     });
 });

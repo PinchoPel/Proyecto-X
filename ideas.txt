@@ -17,3 +17,11 @@ cargar home una vez registrado pero con el navBar cambiado OK
 
 MENÚ FILTROS MÓVIL:
 debajo del header, cuando se haga clic, aparece el menú de filtros, si se puede con una transición suave. En móvil oculto, dejar unabarra horizontal con una lupa en el centro, cuando se muestre, aparece por el lateral con z-index 1 sin desplazamiento de evento. Cuando se hace clic y se filtra, vuelve a estar oculto. Añadir botón de limpiar filtrros
+
+PARA LOS EVENTOS:
+
+Poner un + para participar en el evento.
+Poner un muñeco saliendo para salir del evento que sustituya al +.
+Si es el autor, poner cubo de basura para eliminar evento en lugar de muñeco huyendo.
+Si es el autor, añadir un lápiz y papel para modificar los datos del evvento.
+En un mismo botón hay: cubo, muñeco y +. Dependiendo de la situación

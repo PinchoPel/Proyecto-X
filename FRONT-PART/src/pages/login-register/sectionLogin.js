@@ -1,6 +1,4 @@
 import { linkCSS } from "../../componentes/common/linkCSS.js";
-import { createHeader } from "../../componentes/header/header.js";
-import { createMain } from "../../componentes/main/main.js";
 import { loginForm } from "./login.js";
 import { registerForm } from "./register.js";
 
@@ -19,7 +17,7 @@ export const sectionLogin = () => {
     buttonHome.textContent = "Volver a Inicio";
     sectionLogin.id = "sectionLogin";
     navBar.classList = "navBarLogin"
-    buttonHome.addEventListener("click", () => {createHeader(); createMain()});
+    buttonHome.addEventListener("click", () => {location.reload()});
 
     navBar.append(buttonHome);
     sectionLogin.append(divLogin);

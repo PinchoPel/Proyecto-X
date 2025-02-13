@@ -1,7 +1,6 @@
 header{
     height: 120px;
     width: 100vw;
-
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -14,4 +13,12 @@ h1{
     font-size: 40px;
     cursor: pointer;
     margin-left: 70px;
+}
+
+/*350px*/
+
+@media (max-width: 350px){
+    h1{
+        font-size: 30px;
+    }
 }

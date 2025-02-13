@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 connectDB();
 connectCloudinary();
-app.use(cors());
+app.use(cors({allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(express.json());
 
 app.use("/ping", (req,res,next) => {

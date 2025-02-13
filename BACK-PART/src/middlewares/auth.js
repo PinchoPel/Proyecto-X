@@ -5,7 +5,6 @@ const auth = async (req,res,next) => {
     try {
         if (req.headers.authorization) {
             const token = req.headers.authorization.split(" ")[1];
-            
             let {id} = verifyToken(token);
             let user = await User.findById(id);
             req.user = user;

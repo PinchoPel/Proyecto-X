@@ -43,9 +43,12 @@ export function createSearchByProvince (){
     searchByProvinceLabel.textContent = "Buscar por provincia";
     firstOptionProvince.textContent = "Seleccionar...";
     firstOptionProvince.id = "firstOptionProvince";
+    firstOptionProvince.disabled = true;
+    firstOptionProvince.selected = true;
     searchByProvinceSelect.id = "searchByProvince";
     for (const province of arrayProvinces) {
         const option = document.createElement("option");
+        option.value = province;
         option.textContent = province;
         searchByProvinceSelect.append(option);
     }
@@ -68,8 +71,11 @@ export function createSearchByTag (){
     searchByTagSelect.id = "searchByTag";
     firstOptionTag.textContent = "Seleccionar...";
     firstOptionTag.id = "firstOptionTag";
+    firstOptionTag.disabled = true;
+    firstOptionTag.selected = true;
     for (const tag of arrayTags) {
         const option = document.createElement("option");
+        option.value = tag;
         option.textContent = tag;
         searchByTagSelect.append(option);
     }

@@ -2,7 +2,6 @@ import { linkCSS } from "../../../componentes/common/linkCSS.js";
 import { createFilterAside, createRangeForm, createReverseDate, createSearchByProvince, createSearchByTag } from "./asideElements.js";
 import { asideToggle } from "./asideFunctions.js";
 
-
 export const createAsideHome = () =>{
     const divHome = document.querySelector("#divHome");
     const asideSectionHome = document.createElement("aside");

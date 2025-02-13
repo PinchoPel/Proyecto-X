@@ -52,7 +52,17 @@ const searchByRangeDate = async (req, res, next) => {
         })
         return res.status(200).json(event);
     } catch (error) {
-        return res.status(400).json("No hay eventos en esas fechas")
+        return res.status(400).json("Ha fallado la petición para esas fechas")
+    }
+};
+
+const getMyEvents = async (req, res, next) => {
+    try {
+        const {id} = req.user;
+        const myEvents = await Event.find({ participants: { $in: [id] } });
+        return res.status(200).json(myEvents);
+    } catch (error) {
+        return res.status(400).json("No hay eventos propios cargados")
     }
 }
 
@@ -67,12 +77,11 @@ const postEvent = async (req,res,next) => {
             tags: req.body.tags,
             description: req.body.description
         })
-
-        newEvent.participants.push(req.user._id)
+        newEvent.participants.push(req.user._id);  
         await newEvent.save();
         return res.status(200).json(newEvent);
     } catch (error) {
-        return res.status(400).json("Ha fallado la petición")
+        return res.status(400).json("Ha fallado la creación del evento")
     }
 };
 
@@ -104,4 +113,4 @@ const deleteEvent = async (req,res,next) => {
     }
 };
 
-module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate};
+module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents};

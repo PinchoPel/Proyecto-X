@@ -131,6 +131,7 @@
     .eventDiv{
         width: 290px;
         height: 130px;
+        margin-left: 40px;
     }
     .eventImage{
         width: 80px;
@@ -154,6 +155,7 @@
         padding-left: 25px;
     }
     .eventDiv{
+
         width: 210px;
         height: 150px;
     }

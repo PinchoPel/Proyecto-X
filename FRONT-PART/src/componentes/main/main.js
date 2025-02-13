@@ -1,4 +1,3 @@
-
 import { createAsideHome } from "../../pages/home/aside/createAside.js";
 import { createSectionHome } from "../../pages/home/section/sectionHome.js";
 import { linkCSS } from "../common/linkCSS.js";

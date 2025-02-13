@@ -1,6 +1,3 @@
-
-import { createHeader } from "../../componentes/header/header.js";
-import { createMain } from "../../componentes/main/main.js";
 import { errorRegisterForm } from "./errorRegisterForm.js";
 
 export const registerFetch = async (userName, email, password) => {
@@ -23,7 +20,6 @@ export const registerFetch = async (userName, email, password) => {
     else if (response.ok) {
         const responseNewUser = await response.json();
         localStorage.setItem("userToken", responseNewUser.token);
-        createHeader();
-        createMain();
+        location.reload();
     }
 };

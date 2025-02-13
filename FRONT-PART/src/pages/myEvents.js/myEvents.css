@@ -1,0 +1,8 @@
+.hidden{
+display: none ;
+visibility: hidden ;
+}
+#sectionEvents.myEvents{
+    margin-left: 1px;
+    width: 100vw;
+}

@@ -10,10 +10,10 @@ export const arrayProvinces = [
     "Vizcaya", "Zamora", "Zaragoza"
 ];
 
-export const arrayTags = ['Agricultura', 'Arte', 'Aventura', 'Bienestar', 'Charla', 'Ciencia', 'Cine', 'Competición', 
-    'Concierto', 'Conferencia', 'Cultura', 'Cómic', 'Danza', 'Deportes', 'Educación', 'Emprendimiento', 
-    'Espectáculos', 'Exposición', 'Familia', 'Feria', 'Festival', 'Fiesta', 'Fiestas Locales', 
+export const arrayTags = ['Agricultura', "Arquitectura", 'Arte', 'Aventura', 'Bienestar', "Camping", 'Charla', 'Ciencia', 'Cine', 'Competición', 
+    'Concierto', 'Conferencia', 'Cultura', 'Cómic', 'Danza', 'Deportes', 'Educación', 'Emprendimiento', "Escalada", 
+    'Espectáculos',"Excursión", 'Exposición', 'Familia', 'Feria', 'Festival', 'Fiesta', 'Fiestas Locales', 
     'Formación', 'Fotografía', 'Gaming', 'Gastronomía', 'Infantil', 'Innovación', 'Juvenil', 'Literatura', 
-    'Medio Ambiente', 'Moda', 'Música', 'Negocios', 'Quedada', 'Religioso', 'Robótica', 'Salud', 'Solidaridad', 
+    'Medio Ambiente', "Misterio", 'Moda', 'Música', "Naturaleza", 'Negocios', 'Quedada', 'Religioso', 'Robótica', 'Salud', 'Solidaridad', 
     'Sostenibilidad', 'Startups', 'Taller', 'Teatro', 'Tecnología', 'Viajes', 'Voluntariado', 'Webinar', 'Yoga']
    

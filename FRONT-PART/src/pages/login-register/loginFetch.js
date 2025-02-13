@@ -1,8 +1,3 @@
-import { createHeader } from "../../componentes/header/header.js";
-import { createMain } from "../../componentes/main/main.js";
-
-
-
 export const loginFetch = async (userNameEmail, password) => {
     const response = await fetch("http://localhost:3000/api/v1/users/login",{
     method: "POST",
@@ -27,6 +22,5 @@ if (!response.ok) {
 }
     const responseToken = await response.json();
     localStorage.setItem("userToken", responseToken.token)
-    createHeader();
-    createMain();
+    location.reload();
 };
