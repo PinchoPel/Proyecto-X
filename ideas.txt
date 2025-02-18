@@ -25,3 +25,10 @@ Poner un muñeco saliendo para salir del evento que sustituya al +.
 Si es el autor, poner cubo de basura para eliminar evento en lugar de muñeco huyendo.
 Si es el autor, añadir un lápiz y papel para modificar los datos del evvento.
 En un mismo botón hay: cubo, muñeco y +. Dependiendo de la situación
+
+
+
+MODIFICAR PERFIL
+
+al hacer clic en modificar datos, se habilitan los input, el botón de modificar se cambia cancelar como el de la imagen, si hay un change en el input, aparece el botón guardar cambio con su ruta y su controlador, poner delcloudinary en el controlador de la imagen.
+para modificar el event, se hace lo mismo con la imagen y los datos lo mismo que name y email

@@ -1,15 +1,17 @@
 const { auth } = require("../../middlewares/auth");
-const { register, login, getUser, getAllUser, modifyUser, deleteUser } = require("../controllers/users");
+const upload = require("../../middlewares/cloudinary");
+const { register, login, getUser, getAllUser, deleteUser, modifyDataUser, modifyImageUser } = require("../controllers/users");
 
 const userRoutes = require("express").Router();
 
-userRoutes.get("/:id",[auth], getUser);
+userRoutes.get("/myProfile",[auth], getUser);
 userRoutes.get("/",[auth], getAllUser);
 
 userRoutes.post("/register", register);
 userRoutes.post("/login", login);
 
-userRoutes.put("/:id",[auth], modifyUser);
+userRoutes.put("/modifyDataUser", [auth], [upload.none()],  modifyDataUser);
+userRoutes.put("/modifyImageUser", [auth], [upload.single("image")],  modifyImageUser);
 
 userRoutes.delete("/:id", deleteUser);
 

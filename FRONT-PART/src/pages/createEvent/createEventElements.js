@@ -8,10 +8,8 @@ import { warningsCreateEventForm } from "./warningCreateEventForm.js";
 linkCSS("./src/pages/createEvent/createEvent.css");
 export const createEvent = () =>{
     const sectionEvents = document.querySelector("#sectionEvents");
-    const aside = document.querySelector("#asideSectionHome");
     const returnToMenu = document.querySelector("#Crear-evento");
     sectionEvents.classList = "CreateEvent";
-    aside.classList = "hidden";
     sectionEvents.innerHTML = "";
     returnToMenu.textContent = "Volver al Inicio";
 
@@ -106,7 +104,7 @@ export const createEvent = () =>{
     createEventDiv.append(createEventForm);
     sectionEvents.append(createEventDiv);
 
-    createEventImageInput.addEventListener("change", previousSight);
+    createEventImageInput.addEventListener("change",() => previousSight("#createEventImage", "#imagePreviousSight", "#createEventImageLabel"));
 
     let selected = [];
     createEventTagSelect.addEventListener("click", ()=>{
@@ -116,7 +114,6 @@ export const createEvent = () =>{
 
     createEventForm.addEventListener("submit", async (event)=>{ 
         event.preventDefault();
-        previousSight();
         !createEventForm.checkValidity() ?  warningsCreateEventForm() : await createEventFetch(selected);
     });   
 };

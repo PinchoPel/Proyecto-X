@@ -6,10 +6,8 @@ linkCSS("./src/pages/myEvents.js/myEvents.css")
 
 export const renderMyEvents = async () =>{
     const sectionEvents = document.querySelector("#sectionEvents");
-    const aside = document.querySelector("#asideSectionHome");
     const returnToMenu = document.querySelector("#Mis-eventos");
     sectionEvents.classList = "myEvents";
-    aside.classList = "hidden";
     sectionEvents.innerHTML = "";
     const myEvents = await eventsFetch("mysite/myevents");
     renderEvents(myEvents);

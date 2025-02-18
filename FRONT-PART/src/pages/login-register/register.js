@@ -25,13 +25,13 @@ export const registerForm = () => {
     labelNameRegister.textContent = "Elige tu nombre de usuario";
     inputNameRegister.type = "text";
     inputNameRegister.id = "usernameRegister";
-    inputNameRegister.name = "usernameRegister";
+    inputNameRegister.name = "userName";
     inputNameRegister.placeholder = "Nombre de usuario";
     labelEmailRegister.setAttribute("for", "emailRegister");
     labelEmailRegister.textContent = "Introduce tu correo electrónico";
     inputEmailRegister.type = "text";
     inputEmailRegister.id = "emailRegister";
-    inputEmailRegister.name = "emailRegister";
+    inputEmailRegister.name = "email";
     inputEmailRegister.placeholder = "Correo electrónico";
     labelPasswordRegister.setAttribute("for", "passwordRegister");
     labelPasswordRegister.textContent = "Elige una contraseña";

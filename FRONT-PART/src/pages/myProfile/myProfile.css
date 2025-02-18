@@ -1,0 +1,144 @@
+#sectionEvents.myProfile{
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0px;
+}
+#divMyProfile{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 50px;
+    align-items: center;
+    width: 600px;
+    border: solid var(--basic-border-color) 5px;
+    border-radius: 20px;
+    padding: 30px;
+}
+#upperDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-around
+}
+#formDataProfile{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 10px;
+    width: 200px;
+}
+#formDataProfile input{
+    border: none;
+    background-color: transparent;
+}
+#formImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    gap: 10px;
+    align-items: center
+}
+#labelImageMyProfile{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: dashed;
+    padding: 5px;
+}
+#labelImageMyProfile.hidden{
+    display: none;
+    visibility: hidden;
+}
+#ImageMyProfile{
+    display: none;
+}
+#previousSightImage.visiblePreviousImage{
+    width: 200px;
+    height: 200px;
+}
+#imageUploadProfile{
+    width: 200px;
+    height: 200px;
+}
+#divButton{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-evenly;
+    border-top: solid var(--basic-border-color) 3px;
+    padding-top: 20px;
+}
+#formDataProfile input.modify{
+    background-color: antiquewhite;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.toggleeye{
+    width: 20px;
+    height: 20px;
+}
+/*675px*/
+
+@media (max-width: 675px){
+    #divMyProfile{
+        width: 400px;
+        margin-bottom: 50px;
+    }
+    #upperDiv{
+        flex-direction: column;
+        align-items: center;
+        gap:30px
+    }
+    #formImage label{
+        width: 150px;
+        height: 50px;
+        padding: 20px;
+    }
+    #labelImageMyProfile{
+        font-size: 14px;
+    }
+    #previousSightImage.visiblePreviousImage{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/*450px*/
+
+@media (max-width: 450px){
+    #divMyProfile{
+        width: 250px;
+        padding: 15px;
+        height: 100%;
+        gap: 20px;
+    }
+    #previousSightImage.visiblePreviousImage{
+        width: 100px;
+        height: 100px;
+    }
+    #upperDiv{
+        height: 100%;
+    }
+    #divMyProfile label, #divMyProfile p, button{
+        font-size: small;
+    }
+}
+
+@media (max-width: 300px){
+    #divMyProfile{
+        width: 200px;
+    }
+    #divMyProfile label, #divMyProfile p, button{
+        font-size: 11px;
+    }
+    #formDataProfile{
+        width: 170px;
+    }
+}

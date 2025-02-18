@@ -1,10 +1,10 @@
 import { createEvent } from "../../../pages/createEvent/createEventElements.js";
-import { eventsFetch } from "../../../pages/home/section/eventsFetch.js";
-import { renderEvents } from "../../../pages/home/section/renderEvents.js";
 import { sectionLogin } from "../../../pages/login-register/sectionLogin.js";
 import { renderMyEvents } from "../../../pages/myEvents.js/myEvents.js";
+import { renderMyProfile } from "../../../pages/myProfile/myProfileElements.js";
 import { linkCSS } from "../../common/linkCSS.js";
 import { waitForDOM } from "../../common/waitForDOM.js";
+import { returnHome } from "./returnHome.js";
 
 export const createNavBar = () => {
     const nav = document.createElement("nav");
@@ -27,39 +27,49 @@ export const createNavBar = () => {
 
         waitForDOM("#Mis-eventos").then(anchor => {anchor.addEventListener("click", async ()=>{
             if (anchor.textContent == "Mis eventos") {
+                const aside = document.querySelector("#asideSectionHome");
+                aside.classList = "hidden";
                 renderMyEvents();
                 const createEvent = document.querySelector("#Crear-evento");
                 createEvent.textContent = "Crear evento";
+                const myProfile = document.querySelector("#Mi-perfil");
+                myProfile.textContent = "Mi perfil";
             }
             else if (anchor.textContent == "Volver al Inicio") {
-                    const aside = document.querySelector("#asideSectionHome");
-                    const sectionEvents = document.querySelector("#sectionEvents");
-                    const createEvent = document.querySelector("#Crear-evento");
-                    const events = await eventsFetch("orderdates/1");
-                    sectionEvents.classList.remove("myEvents");
-                    aside.classList.remove("hidden");
-                    await renderEvents(events);
-                    anchor.textContent = "Mis eventos";
-                    createEvent.textContent = "Crear evento";
+                anchor.textContent = "Mis eventos";
+                returnHome("#Crear-evento", "Crear evento", "myEvents")
             }
         })});
         waitForDOM("#Crear-evento").then(anchor => {anchor.addEventListener("click", async () => {
             if (anchor.textContent == "Crear evento") {
+                const aside = document.querySelector("#asideSectionHome");
+                aside.classList = "hidden";
                 createEvent();
                 const myEvents = document.querySelector("#Mis-eventos");
                 myEvents.textContent = "Mis eventos";
+                const myProfile = document.querySelector("#Mi-perfil");
+                myProfile.textContent = "Mi perfil";
             }
             else if (anchor.textContent == "Volver al Inicio") {
-                const aside = document.querySelector("#asideSectionHome");
-                const sectionEvents = document.querySelector("#sectionEvents");
-                const myEvents = document.querySelector("#Mis-eventos");
-                const events = await eventsFetch("orderdates/1");
-                sectionEvents.classList.remove("CreateEvent");
-                aside.classList.remove("hidden");
-                await renderEvents(events);
                 anchor.textContent = "Crear evento";
+                returnHome("#Mis-eventos", "Mis eventos", "CreateEvent")
+
+            }
+        })});
+        waitForDOM("#Mi-perfil").then(anchor =>{anchor.addEventListener("click", async () => {
+            if (anchor.textContent == "Mi perfil") {
+                const aside = document.querySelector("#asideSectionHome");
+                aside.classList = "hidden";
+                renderMyProfile();
+                const myEvents = document.querySelector("#Mis-eventos");
                 myEvents.textContent = "Mis eventos";
-        }
+                const createEvent = document.querySelector("#Crear-evento");
+                createEvent.textContent = "Crear evento";
+            }
+            else if (anchor.textContent == "Volver al Inicio") {
+                anchor.textContent = "Crear evento";
+                returnHome("#Mi-perfil", "Mi perfil", "myProfile");
+            }
         })});
     }
     else{

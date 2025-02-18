@@ -8,7 +8,7 @@ export const createEventFetch = async (selected) => {
     const createEventForm = new FormData(document.querySelector("#createEventForm"));
     selected.forEach(opcion => {
         createEventForm.append("tags[]", opcion);
-      });  
+    });  
     const response = await fetch(`http://localhost:3000/api/v1/events/newEvent`,{
         method: "POST",
         headers: {
@@ -16,7 +16,7 @@ export const createEventFetch = async (selected) => {
         },
         body: createEventForm
     })
-await response.json();
+    await response.json();
 
     if (response.ok) {
         const sectionEvents = document.querySelector(".CreateEvent");

@@ -32,9 +32,9 @@ Controladores que ordenen la información bajo algún criterio OK
 Controladores que inserten un elemento de una colección en otra OK
 Implementa un formulario de inicio de sesión para que los usuarios ingresen al sistema. Si no existiera, registrar un nuevo usuario. El registro, nos hace login después de registrarnos para ahorrar un paso innecesario al usuario. OK
 
-Los fetchs están reutilizados a través de una única función que me permita hacer todos mediante el uso de la misma.
+Los fetchs están reutilizados a través de una única función que me permita hacer todos mediante el uso de la misma. OK
 Muestra la lista de eventos disponibles. Los usuarios autenticados verán opciones adicionales para crear eventos y confirmar asistencia
 Permite a los usuarios explorar detalles de cada evento y la lista de asistentes
-Implementa manejo de errores adecuado en el frontend y el backend. Todos los formularios del frontend tienen control de errores que pase lo que pase se informa al usuario de lo que ha pasado.
+Implementa manejo de errores adecuado en el frontend y el backend. Todos los formularios del frontend tienen control de errores que pase lo que pase se informa al usuario de lo que ha pasado. OK
 Todos los procesos asíncronos le muestran un loading de alguna manera al usuario, para que este tenga una respuesta inmediata ante su acción
 Mucho cariño a la componentización, no se repite código en ningún momento.

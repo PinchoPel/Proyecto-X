@@ -24,14 +24,14 @@ export const loginForm = () => {
     labelNameLogin.textContent = "Introduce tu nombre de usuario o correo electrónico";
     inputNameLogin.type = "text";
     inputNameLogin.id = "usernameLogin";
-    inputNameLogin.name = "usernameLogin";
+    inputNameLogin.name = "userNameEmail";
     inputNameLogin.placeholder = "Usuario o correo electrónico";
 
     labelPasswordLogin.setAttribute("for", "passwordLogin");
     labelPasswordLogin.textContent = "Introduce tu contraseña";
     inputPasswordLogin.type = "password";
     inputPasswordLogin.id = "passwordLogin";
-    inputPasswordLogin.name = "passwordLogin";
+    inputPasswordLogin.name = "password";
     inputPasswordLogin.placeholder = "Contraseña";
 
     formToLogin.id = "formToLogin";

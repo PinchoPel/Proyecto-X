@@ -1,6 +1,6 @@
 import { errorRegisterForm } from "./errorRegisterForm.js";
 
-export const registerFetch = async (userName, email, password) => {
+export const registerFetch = async (userName, email, password) => { 
     const response = await fetch("http://localhost:3000/api/v1/users/register",{
     method: "POST",
     headers: {

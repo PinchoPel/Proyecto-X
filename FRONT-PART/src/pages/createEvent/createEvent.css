@@ -205,7 +205,7 @@
     #createElementFieldset{
         width: 350px;
     }
-    #imagePreviousSight{
+    .visiblePreviousImage{
         width: 90px;
         height: 90px;
     }
@@ -238,7 +238,7 @@
 #createEventDescription{
     width: 220px;
 }
-#imagePreviousSight{
+.visiblePreviousImage{
     width: 70px;
     height: 70px;
 }
