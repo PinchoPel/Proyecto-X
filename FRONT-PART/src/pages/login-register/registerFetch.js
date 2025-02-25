@@ -14,7 +14,7 @@ export const registerFetch = async (userName, email, password) => {
     });
     if (!response.ok) {
         const error = await response.json();
-        errorRegisterForm(error);
+        errorRegisterForm(error, "#divRegister");
         return;
     }
     else if (response.ok) {

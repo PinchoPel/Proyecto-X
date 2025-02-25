@@ -1,3 +1,5 @@
+import { infoSingleEvent } from "../../infoEvents/infoSingleEvent.js";
+
 export const renderEvents = async (events) =>{
     const sectionEvents = document.querySelector("#sectionEvents");
     sectionEvents.innerHTML = "";
@@ -9,6 +11,7 @@ export const renderEvents = async (events) =>{
         const eventDiv = document.createElement("div");
         const eventImage = document.createElement("img");
         const eventDivInfo = document.createElement("div");
+        const upperEventDiv = document.createElement("div");
         const eventTitle = document.createElement("h3");
         const dateP = document.createElement("p");
         const eventDate = document.createElement("p");
@@ -17,6 +20,7 @@ export const renderEvents = async (events) =>{
         const selectEvent = document.createElement("a");
 
         eventDiv.classList = "eventDiv";
+        upperEventDiv.classList = "upperEventDiv";
         eventDivInfo.classList = "eventDivInfo";
         eventImage.src = event.image;
         eventImage.classList = "eventImage";
@@ -33,13 +37,24 @@ export const renderEvents = async (events) =>{
         eventLocation.textContent = event.location;
         eventLocation.classList = "eventLocation";
         selectEvent.classList = "selectEvent";
+        selectEvent.id = event._id;
         selectEvent.textContent = "Más información..."
 
         eventDate.insertAdjacentElement("afterbegin", dateP);
         eventLocation.insertAdjacentElement("afterbegin", locationP);
         eventDivInfo.append(eventTitle, eventDate, eventLocation, selectEvent);
-        eventDiv.append(eventImage, eventDivInfo);
+        upperEventDiv.append(eventImage, eventDivInfo);
+        eventDiv.append(upperEventDiv);
         sectionEvents.append(eventDiv);
     }
+    document.querySelectorAll(".selectEvent").forEach(anchor => {  
+            anchor.addEventListener("click", async (event) => {
+                if (anchor.textContent == "Más información...") {
+                event.preventDefault();
+                const eventId = event.target.id;
+                await infoSingleEvent(eventId);       
+            }
+        });
+    });
 };
    

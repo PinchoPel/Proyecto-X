@@ -68,16 +68,20 @@ const getMyEvents = async (req, res, next) => {
 
 const postEvent = async (req,res,next) => {
     try {
+        const {id} = req.user;
+        const uniqueTags = [...new Set(req.body.tags)];
+        
         let newEvent = new Event({
             title: req.body.title,
             image: req.file.path,
             date: req.body.date,
-            author: req.user.name,
+            author: req.user.userName,
             location: req.body.location,
-            tags: req.body.tags,
-            description: req.body.description
-        })
-        newEvent.participants.push(req.user._id);  
+            tags: uniqueTags,
+            description: req.body.description         
+        }) 
+
+        newEvent.participants.push(id);     
         await newEvent.save();
         return res.status(200).json(newEvent);
     } catch (error) {

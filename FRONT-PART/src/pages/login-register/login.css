@@ -58,7 +58,7 @@
     white-space: wrap;
 }
 #sectionLogin button{
-    border:  var(--basic-letter-color);
+    border-color:  var(--basic-letter-color);
     border-radius: 10px;
     padding: 5px;
     color:  var(--basic-letter-color);

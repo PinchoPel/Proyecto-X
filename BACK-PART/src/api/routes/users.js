@@ -4,15 +4,15 @@ const { register, login, getUser, getAllUser, deleteUser, modifyDataUser, modify
 
 const userRoutes = require("express").Router();
 
-userRoutes.get("/myProfile",[auth], getUser);
-userRoutes.get("/",[auth], getAllUser);
+userRoutes.get("/myProfile/:id?",[auth], getUser);
+userRoutes.get("/user/:inputUserAdmin",[auth], getAllUser);
 
 userRoutes.post("/register", register);
 userRoutes.post("/login", login);
 
-userRoutes.put("/modifyDataUser", [auth], [upload.none()],  modifyDataUser);
-userRoutes.put("/modifyImageUser", [auth], [upload.single("image")],  modifyImageUser);
+userRoutes.put("/modifyDataUser/:id", [auth], [upload.none()],  modifyDataUser);
+userRoutes.put("/modifyImageUser/:id", [auth], [upload.single("image")],  modifyImageUser);
 
-userRoutes.delete("/:id", deleteUser);
+userRoutes.delete("/deleteProfile/:id/:userName",[auth], deleteUser);
 
 module.exports = userRoutes;

@@ -1,3 +1,6 @@
+
+
+
 dentro de cada usuario dos colecciones: eventos creados por sí mismo y eventos a los que asiste
 darle etiquetas a los eventos
 TEMA OSCURO

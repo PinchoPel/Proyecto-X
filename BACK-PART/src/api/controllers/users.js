@@ -3,21 +3,24 @@ const {User, userNameJoiSchema, emailJoiSchema, passwordJoiSchema, } = require("
 const { generateSign } = require("../../config/jwt");
 const { welcomeEmail } = require("../../utils/mailjet");
 const { delCloudinary } = require("../../utils/deleteInCloudinary");
+const Event = require("../models/events");
 
-
-const getAllUser = async (req,res,next) => {
+const getAllUser = async (req,res,next) => { 
     try {
-        let allUsers = await User.find();
-        return res.status(200).json(allUsers);
+        if (req.user.role == "admin") {
+            const {inputUserAdmin} = req.params;
+            let allUsers = await User.findOne( {$or: [{ userName: inputUserAdmin }, { email: inputUserAdmin }]});       
+            return res.status(200).json(allUsers);
+        }
     } catch (error) {
         return res.status(400).json("Ha fallado la petición")
     }
-}
+};
 
 const getUser = async (req,res,next) => { 
     try {
-        let {id} = req.user;
-        let user = await User.findById(id);
+        const userId = req.params.id || req.user.id;
+        let user = await User.findById(userId);
         return res.status(200).json(user);
     } catch (error) {
         return res.status(404).json({ message: "Usuario no encontrado" });
@@ -76,13 +79,13 @@ const register = async (req,res,next) => {
 const login = async (req,res,next) => {
     try {
         let {userNameEmail, password} = req.body;
-        let user = await User.findOne( {$or: [{ userName: userNameEmail }, { email: userNameEmail }]} ); 
+        let user = await User.findOne( {$or: [{ userName: userNameEmail }, { email: userNameEmail }]} );      
             const correctPassword = await bcrypt.compare(password, user.password);
             if (!correctPassword) {
                 return res.status(400).json("Usuario o contraseña incorrectos")
             }
             else if (correctPassword && user) {
-                const token = generateSign(user._id);
+                const token = generateSign(user);
                 return res.status(200).json({user, token});
             }
     } catch (error) {
@@ -92,7 +95,7 @@ const login = async (req,res,next) => {
 
 const modifyImageUser = async (req, res, nest) => {
     try {
-        let { id } = req.user; 
+        const { id } = req.params;      
         delete req.body.role;
         const user = await User.findById(id);
         if (user.image !== "https://res.cloudinary.com/dp5dafjas/image/upload/v1739621786/user-front-side-with-white-background_ia49bu.jpg") {
@@ -100,7 +103,7 @@ const modifyImageUser = async (req, res, nest) => {
         }
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { image: req.file.path },  
+            { image: req.file.path },
             { new: true, runValidators: true }
           );
         return res.status(200).json(updatedUser)
@@ -111,26 +114,27 @@ const modifyImageUser = async (req, res, nest) => {
 
 const modifyDataUser = async (req,res,next) => { 
     try {
-        let { id } = req.user; 
+        const { id } = req.params; 
         const { password, ...updatedData } = req.body;
-        const user = await User.findById(id);
+        await User.findById(id);
 
+        const errors = [];
         const userNameError = userNameJoiSchema.validate({ userName: updatedData.userName });
-        if (userNameError.error ) {
-            return res.status(400).json(userNameError.error );
-        }
         const emailError = emailJoiSchema.validate({ email: updatedData.email });
-        if (emailError.error ) {
-            return res.status(400).json(emailError.error);
-        }
         if (password) {
-            const passwordError = passwordJoiSchema.validate( {password} ); 
+            const passwordError = passwordJoiSchema.validate( {password} );
             if (passwordError.error) {
-                return res.status(400).json(passwordError.error);
+                errors.push(passwordError.error.details[0].message);
             }
-            user.password = password;
-            const updatedUser = await user.save();
-            return res.status(200).json(updatedUser);
+        }
+        if (userNameError.error) { 
+            errors.push(userNameError.error.details[0].message);
+        }  
+        if (emailError.error) {
+            errors.push(emailError.error.details[0].message);
+        }
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
         }
         const updatedUser = await User.findByIdAndUpdate(id, updatedData , { new: true });
         return res.status(200).json(updatedUser);
@@ -141,8 +145,25 @@ const modifyDataUser = async (req,res,next) => {
 
 const deleteUser = async (req,res,next) => {
     try {
-        let {id} = req.params;
-        let userDeleted = await User.findByIdAndDelete(id);
+        const {id, userName} = req.params;
+        const user = await User.findById(id);
+        const authorEvent = await Event.find({author: userName});
+
+        if (authorEvent.length > 0) {
+            for (let index = 0; index < authorEvent.length; index++) {               
+                delCloudinary(authorEvent[index].image);
+            }
+        } 
+        await Event.deleteMany({author: userName});
+
+        if (user.image !== "https://res.cloudinary.com/dp5dafjas/image/upload/v1739621786/user-front-side-with-white-background_ia49bu.jpg") {
+            delCloudinary(user.image)
+        }
+        await Event.updateMany(
+            { participants: user._id },
+            { $pull: { participants: user._id } }
+        );
+        const userDeleted = await User.findByIdAndDelete(id);
         return res.status(200).json(userDeleted)
     } catch (error) {
         return res.status(400).json("No se ha borrado el usuario")

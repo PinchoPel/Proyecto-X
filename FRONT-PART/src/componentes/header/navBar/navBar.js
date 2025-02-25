@@ -1,6 +1,7 @@
 import { createEvent } from "../../../pages/createEvent/createEventElements.js";
 import { sectionLogin } from "../../../pages/login-register/sectionLogin.js";
 import { renderMyEvents } from "../../../pages/myEvents.js/myEvents.js";
+import { fetchUser } from "../../../pages/myProfile/fetchUser.js";
 import { renderMyProfile } from "../../../pages/myProfile/myProfileElements.js";
 import { linkCSS } from "../../common/linkCSS.js";
 import { waitForDOM } from "../../common/waitForDOM.js";
@@ -53,14 +54,13 @@ export const createNavBar = () => {
             else if (anchor.textContent == "Volver al Inicio") {
                 anchor.textContent = "Crear evento";
                 returnHome("#Mis-eventos", "Mis eventos", "CreateEvent")
-
             }
         })});
         waitForDOM("#Mi-perfil").then(anchor =>{anchor.addEventListener("click", async () => {
             if (anchor.textContent == "Mi perfil") {
                 const aside = document.querySelector("#asideSectionHome");
                 aside.classList = "hidden";
-                renderMyProfile();
+                await renderMyProfile(await fetchUser("/myProfile"));
                 const myEvents = document.querySelector("#Mis-eventos");
                 myEvents.textContent = "Mis eventos";
                 const createEvent = document.querySelector("#Crear-evento");
@@ -70,6 +70,10 @@ export const createNavBar = () => {
                 anchor.textContent = "Crear evento";
                 returnHome("#Mi-perfil", "Mi perfil", "myProfile");
             }
+        })});
+        waitForDOM("#Cerrar-sesión").then(anchor =>{anchor.addEventListener("click", ()=>{
+            localStorage.removeItem("userToken");
+            location.reload();
         })});
     }
     else{

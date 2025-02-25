@@ -6,5 +6,5 @@ export const multiselectionTag = (selected)=>{
       else if (selected.includes(select.value)) {
         const index = selected.indexOf(select.value);
         selected.splice(index, 1);
-      }
+      }      
 };

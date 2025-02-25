@@ -16,7 +16,7 @@ export const createEventFetch = async (selected) => {
         },
         body: createEventForm
     })
-    await response.json();
+    const res = await response.json();
 
     if (response.ok) {
         const sectionEvents = document.querySelector(".CreateEvent");

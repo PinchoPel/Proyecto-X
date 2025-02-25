@@ -1,16 +1,20 @@
 import { linkCSS } from "../../componentes/common/linkCSS.js";
-import { fetchUser } from "./fetchUser.js";
-import { fetchModifyProfile } from "./fetchModifyProfileFetch.js";
+import { fetchModifyProfile } from "./fetchModifyProfile.js";
 import { changeImageProfile, enableDataInputProfile, revealPasswordProfile, uploadImageProfile } from "./eventListeners.js";
-linkCSS("./src/pages/myProfile/myProfile.css")
+import { createModalDiv } from "../../componentes/common/modalDiv.js";
+import { deleteMyProfile } from "./deleteMyProfile.js";
+import { getUserRole } from "../../componentes/common/userRole.js";
+import { createInputAdmin } from "./inputAdmin.js";
+linkCSS("./src/pages/myProfile/myProfile.css");
 
-export const renderMyProfile = async ()=>{
+export const renderMyProfile = async (functionParam)=>{
     const sectionEvents = document.querySelector("#sectionEvents");
     const returnToMenu = document.querySelector("#Mi-perfil");
     sectionEvents.classList = "myProfile";
     sectionEvents.innerHTML = "";
-    const user = await fetchUser("/myProfile");
-
+    const userRole = getUserRole(); 
+    const user = await functionParam;
+    userRole == "admin" ? createInputAdmin() : null;
     const divMyProfile = document.createElement("div");
     const upperDiv = document.createElement("div");
     const divDataProfile = document.createElement("div");
@@ -18,6 +22,7 @@ export const renderMyProfile = async ()=>{
     const formImage = document.createElement("form");
     const divButton = document.createElement("div");
     const h3Profile = document.createElement("h3");
+    const pId = document.createElement("p");
     const labelName = document.createElement("label");
     const inputName = document.createElement("input");
     const labelEmail = document.createElement("label");
@@ -38,13 +43,15 @@ export const renderMyProfile = async ()=>{
     const saveNewImage = document.createElement("button");
     const deleteProfile = document.createElement("button");
 
-    divMyProfile.id = "divMyProfile";
+    divMyProfile.id = `divMyProfile`;
     upperDiv.id = "upperDiv";
     divDataProfile.id = "divDataProfile";
     formDataProfile.id = "formDataProfile";
     formImage.id = "formImage";
     divButton.id = "divButton";
     h3Profile.textContent = "Mi Perfil";
+    pId.textContent = user._id;
+    pId.id = "userId";
     labelName.textContent = "Nombre de usuario: ";
     labelName.setAttribute("for", "myUserName");
     inputName.value = user.userName;
@@ -67,6 +74,7 @@ export const renderMyProfile = async ()=>{
     inputPasswordUser.disabled = true;
     inputPasswordUser.name = "password";
     pCreated.textContent = "Perfil creado el: ";
+    pCreated.id = "pCreated";
     pCreatedUser.textContent = new Intl.DateTimeFormat('es-ES').format(new Date(user.createdAt.split("T")[0]));
     labelImage.setAttribute("for", "ImageMyProfile");
     labelImage.textContent =`Pulsa para subir imagen` ;
@@ -82,7 +90,6 @@ export const renderMyProfile = async ()=>{
     buttonModifyDataProfile.textContent = "Modificar perfil";
     buttonModifyDataProfile.id = "buttonModifyProfile";
     deleteProfile.textContent = "Borrar perfil";
-    deleteProfile.id = "buttonDeleteProfile";
     buttonImage.textContent = "Cambiar imagen";
     buttonImage.id = "buttonImage";
     saveNewName.classList = "hidden";
@@ -96,12 +103,12 @@ export const renderMyProfile = async ()=>{
     divDataProfile.append( formDataProfile);
     upperDiv.append(formImage, divDataProfile);
     divButton.append(deleteProfile);
-    divMyProfile.append(upperDiv, divButton);
+    divMyProfile.append(pId, upperDiv, divButton);
     sectionEvents.append(divMyProfile);
 
     buttonImage.addEventListener("click",  (event)=>{
         event.preventDefault();
-       changeImageProfile(inputImage, labelImage, buttonImage);
+    changeImageProfile(inputImage, labelImage, buttonImage);
     });
     inputImage.addEventListener("change", ()=>{
         uploadImageProfile(saveNewImage, imageProfile);
@@ -129,7 +136,7 @@ export const renderMyProfile = async ()=>{
     });
     inputPasswordUser.addEventListener("input", ()=>{
         if (!document.querySelector("#saveNewPass") && !document.querySelector("#eyeImageProfile")) {
-        revealPasswordProfile(saveNewPass, inputPasswordUser, formDataProfile);
+        revealPasswordProfile(saveNewPass, inputPasswordUser);
         }
     });
     saveNewPass.addEventListener("click", async(event)=>{
@@ -141,4 +148,6 @@ export const renderMyProfile = async ()=>{
     saveNewEmail.addEventListener("click", async(event)=>{ 
         event.preventDefault();
         await fetchModifyProfile("modifyDataUser", "#formDataProfile")});
+
+        deleteProfile.addEventListener("click",  ()=> createModalDiv("¿Seguro que quieres eliminar tu perfil? Se eliminarán también todos los eventos que hayas creado.",  deleteMyProfile));
 };
