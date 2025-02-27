@@ -48,12 +48,12 @@ export const renderEvents = async (events) =>{
         sectionEvents.append(eventDiv);
     }
     document.querySelectorAll(".selectEvent").forEach(anchor => {  
-            anchor.addEventListener("click", async (event) => {
-                if (anchor.textContent == "Más información...") {
-                event.preventDefault();
-                const eventId = event.target.id;
-                await infoSingleEvent(eventId);       
-            }
+        anchor.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const aside = document.querySelector("#asideSectionHome");
+            aside.classList = "hidden";
+            const eventId = event.target.id;
+            await infoSingleEvent(eventId);
         });
     });
 };

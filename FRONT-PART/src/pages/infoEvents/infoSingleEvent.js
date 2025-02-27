@@ -1,46 +1,138 @@
+import { linkCSS } from "../../componentes/common/linkCSS.js";
+import { getUserRole } from "../../componentes/common/userRole.js";
 import { eventsFetch } from "../home/section/eventsFetch.js";
 import { renderEvents } from "../home/section/renderEvents.js";
+import { fetchSignUp } from "./fetchSignUp.js";
+import { getUserName } from "./getUserName.js";
+import { toggleParticipate } from "./toggleParticipateButton.js";
 
 export const infoSingleEvent = async  (eventId) => {
+    linkCSS("./src/pages/infoEvents/singleEvent.css")
     const sectionEvents = document.querySelector("#sectionEvents");
-    const h2 = document.querySelector("#h2SectionEvents");
-    const singleEvent = await eventsFetch(eventId);
-    
-    sectionEvents.classList = "singleEvent"; //igual no sirve
+    const singleEvent = await eventsFetch(eventId); 
     sectionEvents.innerHTML = "";
     await renderEvents([singleEvent]);
 
-    console.log(singleEvent);
-    
-    const divEventEnlarged = document.querySelector(".eventDiv");
-    const returnToHome =  document.querySelector(".selectEvent");
+    const h2 = document.querySelector("#h2SectionEvents");
+    const titleEventEnlarged = document.querySelector(".eventTitle");
+    const anchorInformation =  document.querySelector(".selectEvent");
+    const eventDivEnlarged = document.querySelector(".eventDiv");
     const belowDiv = document.createElement("div");
-    const description = document.createElement("p");
+    const divTags = document.createElement("div");
+    const divParticipants = document.createElement("div");
+    const divActionsButtons = document.createElement("div");
+    const description = document.createElement("h4");
     const descriptionEvent = document.createElement("p");
     const author = document.createElement("p");
     const authorEvent = document.createElement("p");
+    const h4Participants = document.createElement("h4");
+    const participateButton = document.createElement("button");
+    const participateImage = document.createElement("img");
+    const spanparticipateButton = document.createElement("span");
+    const role = getUserRole();
+    const userName = getUserName();
+    
+    if (role == "admin" || singleEvent.author == userName ) {
+        const editButton = document.createElement("button");
+        const editImage = document.createElement("img");
+        const spanEditButton = document.createElement("span");
+        const eliminateButton = document.createElement("button");
+        const eliminateImage = document.createElement("img");
+        const spaneliminateButton  = document.createElement("span");
+        editImage.classList = "toggleeye";
+        editImage.src = "./src/images/edit-2-svgrepo-com.svg";
+        eliminateImage.classList = "toggleeye";
+        eliminateImage.src = "./src/images/trash-bin-trash-svgrepo-com.svg";
+        spanEditButton.textContent = "Editar evento";
+        spanEditButton.classList = "spanButton";
+        spaneliminateButton.textContent = "Eliminar evento";
+        spaneliminateButton.classList = "spanButton";
+        editButton.append(editImage, spanEditButton);
+        eliminateButton.append(eliminateImage, spaneliminateButton);
+        divActionsButtons.append(editButton, eliminateButton);
+    }
+    const returnHomeButton = document.createElement("button");
+    const participants = singleEvent.participants;
 
+    eventDivEnlarged.id = "eventDivEnlarged";
+    h2.textContent = singleEvent.title;
+    sectionEvents.classList = "singleEvent";
+    belowDiv.id = "belowDivEvent";
+    divTags.id = "divTags";
+    divParticipants.id = "divParticipants";
     description.textContent = "Descripción del evento";
     descriptionEvent.textContent = singleEvent.description;
     author.textContent = "Creado por: ";
     authorEvent.textContent = singleEvent.author;
+    anchorInformation.remove();
+    h4Participants.textContent = "Ya inscritos en el evento";
+    divActionsButtons.id = "divActionsButtons";
+    participateImage.classList = "toggleeye";
+    participateImage.src = "./src/images/star-svgrepo-com.svg";
+    spanparticipateButton.textContent = "Unirse al evento";
+    spanparticipateButton.classList = "spanButton";
+
+    returnHomeButton.id = "returnFromEvent";
+    returnHomeButton.textContent = "Salir del evento";
     for (let index = 0; index < singleEvent.tags.length; index++) {
         const tagEvent = document.createElement("p");
         tagEvent.textContent = singleEvent.tags[index];
+        divTags.append(tagEvent);
+    };
+    //sacar esto en una función y pasar participants como param
+    for (const participant of participants) {
+        const participantImage = document.createElement("img");
+        participantImage.src = participant.image;
+        participantImage.classList = "participantImage";
+        divParticipants.append(participantImage);
+        participantImage.addEventListener("click", ()=>{
+            const body = document.querySelector("body");
+            const backgroundDiv = document.createElement("div");
+            const modalDiv = document.createElement("div");
+            const imageProfile = document.createElement("img");
+            const close = document.createElement("img");
+            const name = document.createElement("p");
+            const button = document.createElement("button");
 
-    }
+            backgroundDiv.classList = "backgroundDivParticipant";
+            modalDiv.classList = "modalDivParticipant";
+            imageProfile.classList = "checkParticipant";
+            imageProfile.src = participant.image;
+            name.textContent = participant.userName;
+            close.classList = "toggleeye";
+            close.src = "./src/images/close-bold-svgrepo-com.svg";
 
+            button.append(close);
+            modalDiv.append(imageProfile, name, button);
+            backgroundDiv.append(modalDiv);
+            body.append(backgroundDiv);
 
+            button.addEventListener("click", ()=> backgroundDiv.remove());
+        })
+    };
 
+    belowDiv.append(divTags, description, descriptionEvent);
+    titleEventEnlarged.insertAdjacentElement("beforebegin", author);
+    author.insertAdjacentElement("afterend", authorEvent);
+    descriptionEvent.insertAdjacentElement("afterend", h4Participants);
+    participateButton.append(participateImage, spanparticipateButton);
+    divActionsButtons.append(participateButton);
+    eventDivEnlarged.append(belowDiv, divParticipants, divActionsButtons, returnHomeButton);
 
-
-    returnToHome.textContent = "Salir del evento";
-    returnToHome.addEventListener("click", async (event)=>{ 
-        if (returnToHome.textContent == "Salir del evento") {
-            event.preventDefault();
-            sectionEvents.classList.remove("singleEvent");
-            const events = await eventsFetch("orderdates/1");
-            await renderEvents(events);
-        };
+    //sacar todo el contenido que se pueda a una función
+    returnHomeButton.addEventListener("click", async (event)=>{ 
+        const aside = document.querySelector("#asideSectionHome");
+        aside.classList.remove("hidden");
+        sectionEvents.classList.remove("singleEvent");
+        eventDivEnlarged.classList.remove("eventDivEnlarged");
+        event.preventDefault();
+        const events = await eventsFetch("orderdates/1");
+        await renderEvents(events);
+    });
+    participateButton.addEventListener("click", async (event)=>{
+        event.preventDefault();  
+        await fetchSignUp(eventId);
+        await infoSingleEvent(eventId);
+        toggleParticipate(participateImage);
     });
 };

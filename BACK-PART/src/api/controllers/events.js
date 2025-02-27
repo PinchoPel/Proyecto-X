@@ -88,7 +88,24 @@ const postEvent = async (req,res,next) => {
         return res.status(400).json("Ha fallado la creación del evento")
     }
 };
+const signUpEvent = async (req, res, next) => {
+    try {
+        const {id} = req.user;
+        const {eventId} = req.params;
+        const event = await Event.findById(eventId);
+        if (event.participants.includes(id)) {
+            const eventUpdated = await Event.findByIdAndUpdate(eventId,{ $pull: { participants: id } }, { new: true }).populate("participants");
+            return res.status(200).json(eventUpdated);
+        }
+        else{
+            const eventUpdated = await Event.findByIdAndUpdate(eventId,{ $addToSet: { participants: id } }, { new: true }).populate("participants");
+            return res.status(200).json(eventUpdated);
+        }
 
+    } catch (error) {
+        return res.status(400).json("No se ha inscrito en el evento")
+    }
+};
 const modifyEvent = async (req,res,next) => {
     try {
         let {id} = req.params;
@@ -117,4 +134,4 @@ const deleteEvent = async (req,res,next) => {
     }
 };
 
-module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents};
+module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents, signUpEvent};

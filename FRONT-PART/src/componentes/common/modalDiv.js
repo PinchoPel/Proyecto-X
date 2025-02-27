@@ -10,8 +10,8 @@ export const createModalDiv =  (textConfirm,  functionParam) => {
     const buttonConfirm = document.createElement("button");
     const buttonCancel = document.createElement("button");
 
-    backgroundDiv.id = "backgroundDiv";
-    modalDiv.id = "modalDiv";
+    backgroundDiv.classList = "backgroundDiv";
+    modalDiv.classList = "modalDiv";
     h4.textContent = textConfirm;
     buttonConfirm.id = "buttonConfirm";
     buttonConfirm.textContent = "Confirmar";

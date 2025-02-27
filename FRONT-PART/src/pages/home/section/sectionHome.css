@@ -19,17 +19,25 @@
 #sectionEvents h2{
     color: var(--basic-letter-color);
     margin-bottom: 30px;
+    text-align: center;
 }
-.upperEventDiv{
-    width: 550px;
-    height: fit-content;
-    border: solid 3px var(--basic-border-color);
-    border-radius: 10px;
+.eventDiv{
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: column;
+    border: solid 3px var(--basic-border-color);
     background-color: var(--basic-background-color);
     margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    align-items: center;
+    margin-left: 70px;
+}
+.upperEventDiv {
+    width: 500px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .eventImage{
     width: 120px;
@@ -38,7 +46,7 @@
 }
 .eventDivInfo{
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     width: 300px;
     height: fit-content;
     display: flex;
@@ -46,6 +54,8 @@
     text-align: center;
     justify-content: space-between;
     gap: 10px;
+    font-weight: 600;
+    color:  var(--basic-letter-color);
 }
 .eventDate{
     font-weight: 700;
@@ -64,10 +74,17 @@
     font-weight: 500;
 }
 
+@media(max-width: 890px){
+    .eventDiv{
+        width: 500px;
+        margin-left: 0px;
+    }
+}
 /*810px*/
 @media(max-width: 810px){
     .upperEventDiv{
         width: 450px;
+        gap: 60px;
     }
     .eventImage{
         width: 120px;
@@ -76,15 +93,20 @@
     .eventDivInfo{
         width: 200px;
     }
+    .eventDiv {
+        margin-left: 0px;
+    }
 }
 
-/*700px*/
-@media(max-width: 700px){
+/*760px*/
+@media(max-width: 760px){
     #sectionEvents{
         margin-left: 120px;
     }
     .upperEventDiv{
         width: 350px;
+        gap: 0px;
+        justify-content: space-around;
     }
     .eventImage{
         width: 100px;
@@ -99,15 +121,52 @@
     .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
         font-size: small;
     }
+    .eventDiv {
+        margin-left: 70px;
+        width: 350px;
+    }
 }
 
-/*550px*/
-@media(max-width: 550px){
+/*600px*/
+@media(max-width: 600px){
     #sectionEvents{
         margin-left: 90px;
     }
     .upperEventDiv{
+        width: 100%;
+        justify-content: space-around;
+    }
+    .eventImage{
+        width: 100px;
+        height: 100px;
+    }
+    .eventDivInfo{
+        width: 120px;
+    }
+    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
+        font-size: smaller;
+    }
+    .eventDiv {
+        margin-left: 30px;
+        width: 350px;
+    }
+}
+
+/*550px*/
+@media(max-width: 550px){
+
+    #sectionEvents{
+        padding-left: 30px;
+        margin-left: 0px;
+ } 
+    #sectionEvents h2{
+        font-size: 25px;
+        margin-left: 100px;
+    }
+    .upperEventDiv{
         width: 290px;
+        margin-left: 0px;
+        justify-content: space-around;
     }
     .eventImage{
         width: 80px;
@@ -118,42 +177,26 @@
     }
     .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
         font-size: smaller;
+    }
+    .eventDiv {
+        margin-left: 110px;
+        width: 290px;
+        padding: 0px;
     }
 }
 
 /*440px*/
 @media(max-width: 440px){
-
-    #sectionEvents{
-        padding-left: 30px;
-        margin-left: 0px;
-    }
-    .upperEventDiv{
-        width: 290px;
-        margin-left: 40px;
-    }
-    .eventImage{
-        width: 80px;
-        height: 80px;
-    }
-    .eventDivInfo{
-        width: 120px;
-    }
-    .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
-        font-size: smaller;
-    }
-}
-
-/*360px*/
-@media(max-width: 360px){
     #sectionEvents h2{
-        font-size: 25px;
+        margin-left: 70px;
     }
     #sectionEvents{
         padding-left: 25px;
     }
     .upperEventDiv{
         width: 210px;
+        flex-direction: column;
+        padding: 20px;
     }
     .eventImage{
         width: 60px;
@@ -161,9 +204,15 @@
     }
     .eventDivInfo{
         width: 90px;
+        margin-bottom: 5px;
     }
     .eventDate, .dateP, .eventLocation, .locationP, .eventDivInfo a{
         font-size: x-small;
+    }
+    .eventDiv {
+        margin-left: 50px;
+        width: 210px;
+        padding: 0px;
     }
 }
 /*270px*/

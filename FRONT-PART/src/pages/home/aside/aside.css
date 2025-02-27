@@ -154,7 +154,8 @@
         width: 90px;
     }
     #rangeDateForm input{
-        font-size: small;
+        font-size: x-small;
+        padding: 2px;
     }
     #asideSectionHome legend, #asideSectionHome  label{
         font-size: small;

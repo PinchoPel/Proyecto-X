@@ -1,6 +1,6 @@
 const { auth } = require("../../middlewares/auth");
 const upload = require("../../middlewares/cloudinary");
-const { postEvent, getSingleEvent, getEvents, deleteEvent, modifyEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents} = require("../controllers/events");
+const { postEvent, getSingleEvent, getEvents, deleteEvent, modifyEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents, signUpEvent} = require("../controllers/events");
 
 const eventRoutes = require("express").Router();
 
@@ -13,7 +13,8 @@ eventRoutes.get("/mysite/myevents", [auth], getMyEvents);
 
 eventRoutes.post("/newEvent",[auth],[upload.single("image")], postEvent);
 
-eventRoutes.put("/:id",[upload.single("image")], modifyEvent);
+eventRoutes.put("/:id", [auth], [upload.single("image")], modifyEvent);
+eventRoutes.put("/signupevent/:eventId", [auth], signUpEvent)
 
 eventRoutes.delete("/:id",[auth], deleteEvent);
 
