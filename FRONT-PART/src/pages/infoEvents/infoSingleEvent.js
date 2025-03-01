@@ -4,7 +4,8 @@ import { eventsFetch } from "../home/section/eventsFetch.js";
 import { renderEvents } from "../home/section/renderEvents.js";
 import { fetchSignUp } from "./fetchSignUp.js";
 import { getUserName } from "./getUserName.js";
-import { toggleParticipate } from "./toggleParticipateButton.js";
+import { leaveEvent } from "./leaveEvent.js";
+import { visitProfile } from "./visitProfile.js";
 
 export const infoSingleEvent = async  (eventId) => {
     linkCSS("./src/pages/infoEvents/singleEvent.css")
@@ -71,7 +72,10 @@ export const infoSingleEvent = async  (eventId) => {
     participateImage.src = "./src/images/star-svgrepo-com.svg";
     spanparticipateButton.textContent = "Unirse al evento";
     spanparticipateButton.classList = "spanButton";
-
+    if (singleEvent.author == userName) {
+        participateButton.classList = "hidden";
+        participateButton.disabled = true;
+    }
     returnHomeButton.id = "returnFromEvent";
     returnHomeButton.textContent = "Salir del evento";
     for (let index = 0; index < singleEvent.tags.length; index++) {
@@ -79,38 +83,23 @@ export const infoSingleEvent = async  (eventId) => {
         tagEvent.textContent = singleEvent.tags[index];
         divTags.append(tagEvent);
     };
-    //sacar esto en una función y pasar participants como param
     for (const participant of participants) {
+        if (participant.userName == userName ) {
+            participateImage.src = "./src/images/exit-door-sign-svgrepo-com.svg";
+            spanparticipateButton.textContent = "Salir del evento";
+        }else{
+            participateImage.src = "./src/images/star-svgrepo-com.svg";
+            spanparticipateButton.textContent = "Unirse al evento";
+        }
         const participantImage = document.createElement("img");
         participantImage.src = participant.image;
         participantImage.classList = "participantImage";
         divParticipants.append(participantImage);
+
         participantImage.addEventListener("click", ()=>{
-            const body = document.querySelector("body");
-            const backgroundDiv = document.createElement("div");
-            const modalDiv = document.createElement("div");
-            const imageProfile = document.createElement("img");
-            const close = document.createElement("img");
-            const name = document.createElement("p");
-            const button = document.createElement("button");
-
-            backgroundDiv.classList = "backgroundDivParticipant";
-            modalDiv.classList = "modalDivParticipant";
-            imageProfile.classList = "checkParticipant";
-            imageProfile.src = participant.image;
-            name.textContent = participant.userName;
-            close.classList = "toggleeye";
-            close.src = "./src/images/close-bold-svgrepo-com.svg";
-
-            button.append(close);
-            modalDiv.append(imageProfile, name, button);
-            backgroundDiv.append(modalDiv);
-            body.append(backgroundDiv);
-
-            button.addEventListener("click", ()=> backgroundDiv.remove());
+            visitProfile(participant);
         })
     };
-
     belowDiv.append(divTags, description, descriptionEvent);
     titleEventEnlarged.insertAdjacentElement("beforebegin", author);
     author.insertAdjacentElement("afterend", authorEvent);
@@ -119,20 +108,14 @@ export const infoSingleEvent = async  (eventId) => {
     divActionsButtons.append(participateButton);
     eventDivEnlarged.append(belowDiv, divParticipants, divActionsButtons, returnHomeButton);
 
-    //sacar todo el contenido que se pueda a una función
     returnHomeButton.addEventListener("click", async (event)=>{ 
-        const aside = document.querySelector("#asideSectionHome");
-        aside.classList.remove("hidden");
-        sectionEvents.classList.remove("singleEvent");
-        eventDivEnlarged.classList.remove("eventDivEnlarged");
         event.preventDefault();
-        const events = await eventsFetch("orderdates/1");
-        await renderEvents(events);
+        await leaveEvent(sectionEvents, eventDivEnlarged);
     });
-    participateButton.addEventListener("click", async (event)=>{
-        event.preventDefault();  
+    participateButton.addEventListener("click", async function (event){
+        event.target.disabled ? (event.preventDefault(), event.stopPropagation()) : null;
+        event.preventDefault();
         await fetchSignUp(eventId);
         await infoSingleEvent(eventId);
-        toggleParticipate(participateImage);
     });
 };

@@ -90,10 +90,11 @@ const postEvent = async (req,res,next) => {
 };
 const signUpEvent = async (req, res, next) => {
     try {
-        const {id} = req.user;
+        const {id, userName} = req.user;
         const {eventId} = req.params;
         const event = await Event.findById(eventId);
-        if (event.participants.includes(id)) {
+
+        if (event.participants.includes(id) && userName !== event.author) {
             const eventUpdated = await Event.findByIdAndUpdate(eventId,{ $pull: { participants: id } }, { new: true }).populate("participants");
             return res.status(200).json(eventUpdated);
         }
