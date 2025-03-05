@@ -1,37 +1,6 @@
-hay que hacer getsingleevent, modifyevent, deleteevent de los controladores
-
-Ir a renderizar eventos con +info
-renderevents ya ecibe un parámetro que se pasa por un for of y se renderizan todos los eventos. La función es llamada en sectionhome como una variable con su ruta, esta variable es el parámetro que se pasa a renderevents y asi se renderizan todos los eventos al abrir la página.
-
-al hacer click en el anchor .selectevent se lanza un eventlistener que limpia el sectionevents y carga el evento, se puede pasar como parámetro la id del evento desde renderevents dentro del eventlistener, en singleevent llega la id que llama a la ruta y se pasa la id como param, esa ruta se pasa como parámetro a renderevents para que con su for cargue el evento
-se debe anular el botón más información y cambiarlo por volver al inicio
-
-selecciono el sectionevents, se limpia, se pone el h2 y el div con toda la información del evento
-hay que darle una id a cada evento según su id
-cada anchor tiene como id, la _id del evento
-
-CREAR BOTÓN VOLVER A INICIO: se colocará después de la descripción, en salir del evento no se pone nada y se cambia el eventlistener al botón para salir. ok
 
 
 
-Para APUNTARSE al evento hay que hacer un .push en el array participants, el eventlistener debe coger la id del logado, verificar que no existe ya e incluirla, y que si ya está incluida, eliminarla
-
-para el hacer CORRECCIONES en el evento, se va a renderizar de nuevo de manera similar a myProfile: toda la información dentro de inputs deshabilitados, al dar al botón se habilitan para ser cambiados. Una ruta para la imagen del evento, otra ruta para la información plana.
-
-Se podría hacer un renderizado ampliado y cuando se le dé al botón que salga un formulario similar al de crear evento o el mismo formulario pero para cambiar lo que sea, en cada input.value irá la información que ya contenía el evento. Lo malo de esto es que el cambio de imagen debe ir por una ruta y el cambio de texto plano por otra. Habría que añadir botones de guardado individuales. Se podría crear una función para el eventlistener de modificación y lo primero que haga esa función es llamar al renderizado del createEvent, luego se van cogiendo los elementos y se van modificando y se van insertando los nuevos botones para las rutas put
-
-
-
-para BORRARLO también se incluye ventana modal
-
-
-los botones se meten en columna en un div que será metido en .eventDiv para que así se queden en el lado: imagen a izquierda, infoDiv centro, más info debajo y botones a derecha
-cada botón se renderizará al dar click y lanzar infosingleevent
-habrá que incluir los roles
-de momento botón de apuntarse/salir y botón de borrar para admin y creadores y botón de modificar el evento. Sería bueno poner un hover descriptivo
-
-
-
-
+BOTONES DE MODIFY EVENT, TAMAÑO MÓVILES
 
 VALORAR: hacer los eventDiv unpoco más anchos

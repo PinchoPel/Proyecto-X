@@ -3,7 +3,7 @@ import { arrayProvinces, arrayTags } from "../home/aside/arraysForSelects.js";
 import { createEventFetch } from "./createEventFetch.js";
 import { multiselectionTag } from "./multiselectionTag.js";
 import { previousSight } from "./previousSight.js";
-import { warningsCreateEventForm } from "./warningCreateEventForm.js";
+import { noTag, warningsCreateEventForm } from "./warningCreateEventForm.js";
 
 linkCSS("./src/pages/createEvent/createEvent.css");
 export const createEvent = () =>{
@@ -35,8 +35,8 @@ export const createEvent = () =>{
 
     createEventDiv.id= "createEventDiv";
     createEventForm.id = "createEventForm";
-    createEventForm.noValidate = true;
     createElementFieldset.id = "createElementFieldset";
+    createElementLegend.id = "createElementLegend";
     createElementLegend.textContent = "Crea tu evento";
     createEventTitleLabel.setAttribute("for", "createEventTitle");
     createEventTitleLabel.textContent = "Título del evento";
@@ -45,7 +45,7 @@ export const createEvent = () =>{
     createEventTitleInput.id = "createEventTitle";
     createEventTitleInput.name = "title";
     createEventTitleInput.placeholder = "Elige un título";
-;
+
     createEventImageLabel.textContent = `Haz clic aquí para subir una imagen relacionada con el evento`;
     createEventImageLabel.setAttribute("for", "createEventImage")
     createEventImageLabel.id = "createEventImageLabel";
@@ -98,6 +98,7 @@ export const createEvent = () =>{
     createEventDescription.placeholder = "Escribe aquí la descripción de tu evento...";
 
     createEventButtonSubmit.textContent = "Crear evento";
+    createEventButtonSubmit.id = "createEventButtonSubmit";
 
     createElementFieldset.append(createElementLegend, createEventTitleLabel, createEventTitleInput, createEventImageLabel, createEventImageInput, imagePreviousSight, createEventDateLabel, createEventDateInput, createEventLocationLabel, createEventLocationSelect, createEventTagLabel, createEventTagSelect, selectedOptions, createEventDescriptionLabel, createEventDescription);
     createEventForm.append(createElementFieldset, createEventButtonSubmit);
@@ -112,8 +113,12 @@ export const createEvent = () =>{
         selectedOptions.textContent= `Interes marcados: ${Array.from(selected).join(" ")}`;
     });
 
-    createEventForm.addEventListener("submit", async (event)=>{ 
+    createEventButtonSubmit.addEventListener("click", async (event)=>{ 
         event.preventDefault();
-        !createEventForm.checkValidity() ?  warningsCreateEventForm() : await createEventFetch(selected);
-    });   
+        warningsCreateEventForm(); 
+        noTag(selected);
+        if (!document.querySelector(".errorFormMessage")) {
+            await createEventFetch(selected); 
+        }
+    });
 };

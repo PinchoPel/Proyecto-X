@@ -1,6 +1,5 @@
 
 import { linkCSS } from "../common/linkCSS.js";
-import { createMain } from "../main/main.js";
 import { createNavBar } from "./navBar/navBar.js";
 
 export const createHeader = () => {
@@ -11,7 +10,6 @@ export const createHeader = () => {
     const nav = createNavBar();
 
     h1.textContent = "Zona de eventos";
-   // h1.addEventListener("click",() => {createHeader(); createMain()});
     
     header.append(h1);
     header.append(nav);

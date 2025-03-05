@@ -12,7 +12,9 @@ export const createModalDiv =  (textConfirm,  functionParam) => {
 
     backgroundDiv.classList = "backgroundDiv";
     modalDiv.classList = "modalDiv";
+    buttonDiv.id = "modalButtonDiv"
     h4.textContent = textConfirm;
+    h4.id = "modalH4";
     buttonConfirm.id = "buttonConfirm";
     buttonConfirm.textContent = "Confirmar";
     buttonCancel.id = "buttonCancel";

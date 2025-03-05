@@ -1,6 +1,6 @@
 import { createEvent } from "../../../pages/createEvent/createEventElements.js";
 import { sectionLogin } from "../../../pages/login-register/sectionLogin.js";
-import { renderMyEvents } from "../../../pages/myEvents.js/myEvents.js";
+import { renderSignedUpEvent } from "../../../pages/myEvents.js/signedUpEvents.js";
 import { fetchUser } from "../../../pages/myProfile/fetchUser.js";
 import { renderMyProfile } from "../../../pages/myProfile/myProfileElements.js";
 import { linkCSS } from "../../common/linkCSS.js";
@@ -30,13 +30,20 @@ export const createNavBar = () => {
             if (anchor.textContent == "Mis eventos") {
                 const aside = document.querySelector("#asideSectionHome");
                 aside.classList = "hidden";
-                renderMyEvents();
+                await renderSignedUpEvent();          
                 const createEvent = document.querySelector("#Crear-evento");
                 createEvent.textContent = "Crear evento";
                 const myProfile = document.querySelector("#Mi-perfil");
                 myProfile.textContent = "Mi perfil";
             }
             else if (anchor.textContent == "Volver al Inicio") {
+                const sectionEvents = document.querySelector("#sectionEvents");
+                if (sectionEvents.classList.contains("myEventsSignedUp")) {
+                    sectionEvents.classList.remove("myEventsSignedUp")
+                }
+                else if (sectionEvents.classList.contains("myEventsCreated")) {
+                    sectionEvents.classList.remove("myEventsCreated")
+                }
                 anchor.textContent = "Mis eventos";
                 returnHome("#Crear-evento", "Crear evento", "myEvents")
             }

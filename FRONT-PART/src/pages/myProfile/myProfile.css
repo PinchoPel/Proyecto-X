@@ -145,12 +145,12 @@
     height: 250px;
     padding: 30px;
 }
-#modalDiv div{
+#modalButtonDiv{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
-#modalDiv h4{
+#modalH4{
     text-align: center;
     color: var(--basic-letter-color);
 }
@@ -228,12 +228,12 @@
     #revealButton{
         margin: 0px;
     }
-    #modalDiv{
+    .modalDiv{
         width: 400px;
         height: 205px;
         padding: 20px;
     }
-    #modalDiv h4{
+    #modalH4{
         font-size: 14px;
     }
     #divFormAdmin, #formAdminSearchUser{
@@ -260,12 +260,12 @@
     #divMyProfile label, #divMyProfile p, button, #buttonCancel, #buttonConfirm, #divFormAdmin label{
         font-size: small;
     }
-    #modalDiv{
+    .modalDiv{
         width: 300px;
         height: 150px;
         padding: 10px;
     }
-    #modalDiv h4{
+    #modalH4{
         font-size: 12px;
     }
     #divFormAdmin, #formAdminSearchUser{
@@ -276,12 +276,12 @@
 }
 /*375px*/
 @media (max-width: 345px){
-    #modalDiv{
+    .modalDiv{
         width: 200px;
         height: 170px;
         padding: 10px;
     }
-    #modalDiv h4{
+    #modalH4{
         font-size: 12px;
     }
     #buttonCancel, #buttonConfirm{
@@ -308,5 +308,4 @@
         max-width: 100px;
         padding: 5px;
     }
-
 }

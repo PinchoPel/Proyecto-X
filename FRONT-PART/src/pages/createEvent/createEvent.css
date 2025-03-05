@@ -46,6 +46,7 @@
     border-radius: 10px;
     border-color: var(--basic-border-color);
     border-width: 3px;
+    padding-left: 5px;
 }
 #createEventTitle::placeholder{
     text-align: center;
@@ -101,7 +102,7 @@
 #createEventTag option{
     font-weight: 600;
 }
-#selectedOptions{
+#selectedOptions, .modifiedEventtagsSelected{
     color: var(--basic-letter-color);
     font-weight: 700;
     text-align: center;

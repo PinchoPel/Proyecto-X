@@ -1,7 +1,11 @@
 import { linkCSS } from "../../componentes/common/linkCSS.js";
+import { createModalDiv } from "../../componentes/common/modalDiv.js";
 import { getUserRole } from "../../componentes/common/userRole.js";
+import { createEvent } from "../createEvent/createEventElements.js";
 import { eventsFetch } from "../home/section/eventsFetch.js";
 import { renderEvents } from "../home/section/renderEvents.js";
+import { modifySingleEvent } from "../modifyEvent.js/modifyEvent.js";
+import { fetchDeleteEvent } from "./deleteEvent.js";
 import { fetchSignUp } from "./fetchSignUp.js";
 import { getUserName } from "./getUserName.js";
 import { leaveEvent } from "./leaveEvent.js";
@@ -27,12 +31,50 @@ export const infoSingleEvent = async  (eventId) => {
     const author = document.createElement("p");
     const authorEvent = document.createElement("p");
     const h4Participants = document.createElement("h4");
-    const participateButton = document.createElement("button");
-    const participateImage = document.createElement("img");
-    const spanparticipateButton = document.createElement("span");
+    const returnHomeButton = document.createElement("button");
     const role = getUserRole();
     const userName = getUserName();
-    
+    const participants = singleEvent.participants;
+    for (const profileParticipant of participants) {
+        const participantImage = document.createElement("img");
+        participantImage.src = profileParticipant.image;
+        participantImage.classList = "participantImage";
+        divParticipants.append(participantImage);
+        participantImage.addEventListener("click", ()=>{
+            visitProfile(profileParticipant);
+        })
+    };
+    if (localStorage.getItem("userToken")) {
+        const participateButton = document.createElement("button");
+        const participateImage = document.createElement("img");
+        const spanparticipateButton = document.createElement("span");
+        participateImage.classList = "toggleeye";
+        participateImage.src = "./src/images/star-svgrepo-com.svg";
+        spanparticipateButton.textContent = "Unirse al evento";
+        spanparticipateButton.classList = "spanButton";
+        if (singleEvent.author == userName) {  
+            participateButton.classList = "hidden";
+            participateButton.disabled = true;
+        }
+        for (const participant of participants) {
+            if (participant.userName == userName ) {
+                participateImage.src = "./src/images/exit-door-sign-svgrepo-com.svg";
+                spanparticipateButton.textContent = "Salir del evento";
+            }else{
+                participateImage.src = "./src/images/star-svgrepo-com.svg";
+                spanparticipateButton.textContent = "Unirse al evento";
+            }
+        };
+        participateButton.append(participateImage, spanparticipateButton);
+        divActionsButtons.append(participateButton);
+
+        participateButton.addEventListener("click", async function (event){
+            event.target.disabled ? (event.preventDefault(), event.stopPropagation()) : null;
+            event.preventDefault();
+            await fetchSignUp(eventId);
+            await infoSingleEvent(eventId);
+        });
+    };
     if (role == "admin" || singleEvent.author == userName ) {
         const editButton = document.createElement("button");
         const editImage = document.createElement("img");
@@ -51,10 +93,15 @@ export const infoSingleEvent = async  (eventId) => {
         editButton.append(editImage, spanEditButton);
         eliminateButton.append(eliminateImage, spaneliminateButton);
         divActionsButtons.append(editButton, eliminateButton);
-    }
-    const returnHomeButton = document.createElement("button");
-    const participants = singleEvent.participants;
-
+        editButton.addEventListener("click", ()=>{
+            createEvent();
+            modifySingleEvent(eventId);
+        });
+        eliminateButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            createModalDiv("¿De verdad quieres eliminar este evento?", async ()=> await fetchDeleteEvent(eventId))
+        });
+    };
     eventDivEnlarged.id = "eventDivEnlarged";
     h2.textContent = singleEvent.title;
     sectionEvents.classList = "singleEvent";
@@ -68,54 +115,21 @@ export const infoSingleEvent = async  (eventId) => {
     anchorInformation.remove();
     h4Participants.textContent = "Ya inscritos en el evento";
     divActionsButtons.id = "divActionsButtons";
-    participateImage.classList = "toggleeye";
-    participateImage.src = "./src/images/star-svgrepo-com.svg";
-    spanparticipateButton.textContent = "Unirse al evento";
-    spanparticipateButton.classList = "spanButton";
-    if (singleEvent.author == userName) {
-        participateButton.classList = "hidden";
-        participateButton.disabled = true;
-    }
     returnHomeButton.id = "returnFromEvent";
-    returnHomeButton.textContent = "Salir del evento";
+    returnHomeButton.textContent = "Cerrar evento";
     for (let index = 0; index < singleEvent.tags.length; index++) {
         const tagEvent = document.createElement("p");
         tagEvent.textContent = singleEvent.tags[index];
         divTags.append(tagEvent);
     };
-    for (const participant of participants) {
-        if (participant.userName == userName ) {
-            participateImage.src = "./src/images/exit-door-sign-svgrepo-com.svg";
-            spanparticipateButton.textContent = "Salir del evento";
-        }else{
-            participateImage.src = "./src/images/star-svgrepo-com.svg";
-            spanparticipateButton.textContent = "Unirse al evento";
-        }
-        const participantImage = document.createElement("img");
-        participantImage.src = participant.image;
-        participantImage.classList = "participantImage";
-        divParticipants.append(participantImage);
-
-        participantImage.addEventListener("click", ()=>{
-            visitProfile(participant);
-        })
-    };
     belowDiv.append(divTags, description, descriptionEvent);
     titleEventEnlarged.insertAdjacentElement("beforebegin", author);
     author.insertAdjacentElement("afterend", authorEvent);
     descriptionEvent.insertAdjacentElement("afterend", h4Participants);
-    participateButton.append(participateImage, spanparticipateButton);
-    divActionsButtons.append(participateButton);
     eventDivEnlarged.append(belowDiv, divParticipants, divActionsButtons, returnHomeButton);
 
     returnHomeButton.addEventListener("click", async (event)=>{ 
         event.preventDefault();
-        await leaveEvent(sectionEvents, eventDivEnlarged);
-    });
-    participateButton.addEventListener("click", async function (event){
-        event.target.disabled ? (event.preventDefault(), event.stopPropagation()) : null;
-        event.preventDefault();
-        await fetchSignUp(eventId);
-        await infoSingleEvent(eventId);
+        await leaveEvent(sectionEvents, eventDivEnlarged, singleEvent.author);
     });
 };

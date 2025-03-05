@@ -64,7 +64,17 @@ const getMyEvents = async (req, res, next) => {
     } catch (error) {
         return res.status(400).json("No hay eventos propios cargados")
     }
-}
+};
+
+const getMyCreatedEvents = async (req, res, next) => {
+    try {
+        const {userName} = req.user;
+        const myCreatedEvents = await Event.find({ author: userName}).populate("author");
+        return res.status(200).json(myCreatedEvents);
+    } catch (error) {
+        return res.status(400).json("No hay eventos propios cargados")
+    }
+};
 
 const postEvent = async (req,res,next) => {
     try {
@@ -88,6 +98,7 @@ const postEvent = async (req,res,next) => {
         return res.status(400).json("Ha fallado la creación del evento")
     }
 };
+
 const signUpEvent = async (req, res, next) => {
     try {
         const {id, userName} = req.user;
@@ -107,16 +118,17 @@ const signUpEvent = async (req, res, next) => {
         return res.status(400).json("No se ha inscrito en el evento")
     }
 };
+
 const modifyEvent = async (req,res,next) => {
     try {
-        let {id} = req.params;
-        let {author, ...updateEvent} = req.body;
-        let eventToModify = await Event.findById(id);
+        const {id} = req.params;
+        const {author, ...updateEvent} = req.body;
+        const eventToModify = await Event.findById(id);        
         if (req.file) {
             delCloudinary(eventToModify.image);
             updateEvent.image = req.file.path;
         }
-        let modifiedEvent = await Event.findByIdAndUpdate(id, updateEvent, { new: true, runValidators: true });
+        const modifiedEvent = await Event.findByIdAndUpdate(id, updateEvent, { new: true, runValidators: true });
         return res.status(200).json(modifiedEvent); 
     } catch (error) {
         return res.status(400).json("Ha fallado la petición")
@@ -125,8 +137,8 @@ const modifyEvent = async (req,res,next) => {
 
 const deleteEvent = async (req,res,next) => {
     try {
-        let {id} = req.params;
-        let deletedEvent = await Event.findById(id);
+        const {id} = req.params;
+        const deletedEvent = await Event.findById(id);
         delCloudinary(deletedEvent.image);
         await Event.findByIdAndDelete(id);
         return res.status(200).json({message: `El evento ${deletedEvent.title} ha sido borrado`,deletedEvent});
@@ -135,4 +147,4 @@ const deleteEvent = async (req,res,next) => {
     }
 };
 
-module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents, signUpEvent};
+module.exports = {getEvents, getSingleEvent, postEvent, modifyEvent, deleteEvent, searchByTag, searchByLocation, searchByRangeDate, getMyEvents, signUpEvent, getMyCreatedEvents};

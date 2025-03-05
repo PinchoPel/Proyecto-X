@@ -4,7 +4,7 @@ const  {User}  = require("./users");
 
 const eventSchema = new mongoose.Schema({
     title: {type: String, required: true},
-    image: {type: String, required: true},
+    image: {type: String},
     date: {type: Date, required: true},
     author: {type: String, required: true},
     location: {type: String, required: true, enum: [

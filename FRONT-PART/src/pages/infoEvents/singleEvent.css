@@ -163,7 +163,6 @@ color: var(--basic-letter-color);
 #divActionsButtons button:hover .spanButton {
     opacity: 1; 
 }
-
 /*720px*/
 
 @media (max-width: 720px){

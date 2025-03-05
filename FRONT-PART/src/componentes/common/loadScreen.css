@@ -1,0 +1,23 @@
+.divLoading{
+    position:fixed;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(226, 172, 11, 0.5); 
+    backdrop-filter: blur(5px); 
+    flex: 1;
+}
+#pLoading{
+    color: var(--basic-letter-color);
+    font-size: 40px;
+    font-weight: 800;
+}
+
+@media (max-width: 450px){
+    #pLoading{
+        font-size: 24px;
+    }
+}
