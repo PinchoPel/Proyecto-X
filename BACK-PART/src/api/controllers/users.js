@@ -63,7 +63,7 @@ const register = async (req,res,next) => {
                 userName: req.body.userName,
                 email: req.body.email,
                 password: req.body.password,
-                image: "https:res.cloudinary.com/dp5dafjas/image/upload/v1739621786/user-front-side-with-white-background_ia49bu.jpg",
+                image: "https://res.cloudinary.com/dp5dafjas/image/upload/v1739621786/user-front-side-with-white-background_ia49bu.jpg",
                 role: "user"
             });
             let userSaved = await newUser.save();    
