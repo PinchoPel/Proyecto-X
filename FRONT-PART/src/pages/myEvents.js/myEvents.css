@@ -1,0 +1,52 @@
+.hidden{
+    display: none ;
+    visibility: hidden ;
+}
+#sectionEvents.myEventsSignedUp, #sectionEvents.myEventsCreated{
+    margin-left: 1px;
+    width: 100vw;
+    display: flex; 
+    padding: 0px;
+}
+#h2SectionEvents.MyEvents{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#h3MyEvents{
+    color: var(--basic-letter-color);
+    font-weight: 700;
+    font-size: 25px;
+    cursor: pointer;
+    border: var(--basic-border-color) solid 4px;
+    border-radius: 15px;
+    padding: 7px;
+    background-color: var(--aside-background-color);
+    margin-bottom: 30px;
+}
+
+#sectionEvents.myEventsSignedUp .eventDiv, #sectionEvents.myEventsCreated .eventDiv{
+    margin-left: 1px;
+}
+
+@media (max-width: 760px){
+    #h3MyEvents{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 550px){
+    #h3MyEvents{
+        font-size: 15px;
+    }
+    #h2SectionEvents.MyEvents{
+        margin-left: 30px;
+        margin-right: 30px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 320px){
+    #h3MyEvents{
+        font-size: 13px;
+    }
+}

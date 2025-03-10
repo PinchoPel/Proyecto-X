@@ -1,0 +1,248 @@
+#sectionEvents.singleEvent{
+    margin-left: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#sectionEvents.singleEvent h2{
+margin-left: 0px;
+}
+ #eventDivEnlarged {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0px;
+}
+
+#eventDivEnlarged h3{
+    font-size: 24px;
+}
+#eventDivEnlarged h4{
+margin-top: 15px;
+margin-bottom: 15px;
+color: var(--basic-letter-color);
+}
+#eventDivEnlarged .eventImage{
+    width: 200px;
+    height: 200px;
+}
+#belowDivEvent{
+    width: 550px;
+}
+#belowDivEvent p{
+    line-height: 1.5;
+    color: var(--basic-letter-color);
+    font-weight: 600;
+    text-align: justify;
+}
+#divTags{
+    display: flex;
+    max-width: 550px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    align-items: center;
+}
+#divTags p{
+    color: var(--basic-letter-color);
+    font-weight: 700;
+    border: 4px var(--basic-border-color) solid;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: var(--aside-background-color);
+}
+#divParticipants{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    gap: 20px;
+    border: var(--basic-border-color) dashed 4px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.participantImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.backgroundDivParticipant{
+    position:fixed;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px); 
+    flex: 1;
+}
+.modalDivParticipant{
+    background-color: var(--aside-background-color);
+    border: var(--basic-border-color), 4px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    width: 500px;
+    height: fit-content;
+    padding: 30px;
+    gap:30px;
+}
+.checkParticipant{
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+}
+.modalDivParticipant p{
+    text-align: center;
+    font-weight: 800;
+    color:  var(--basic-letter-color);
+    font-size: 20px;
+}
+.modalDivParticipant button{
+    width: 70px;
+    height: fit-content;
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+#divActionsButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#divActionsButtons button{
+    width: 70px;
+    height: fit-content;
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+#returnFromEvent{
+    width: fit-content;
+    margin-top: 20px;
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+.spanButton{
+    position: absolute;
+    transform: translateX(-50%);
+    background: var(--aside-background-color);
+    color: var(--basic-letter-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+#divActionsButtons button:hover .spanButton {
+    opacity: 1; 
+}
+/*720px*/
+
+@media (max-width: 720px){
+    #eventDivEnlarged .upperEventDiv{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    #eventDivEnlarged .eventImage{
+        margin-top: 30px;
+    }
+    #eventDivEnlarged{
+        width: 400px;
+        align-items: center;
+        align-content: center;
+    }
+    #eventDivEnlarged div{
+        width: 370px;
+    }
+    #belowDivEvent{
+        width: 370px;
+    }
+}
+
+/*555px*/
+
+@media (max-width: 550px){
+
+    #eventDivEnlarged .eventImage{
+        width: 150px;
+        height: 150px;
+    }
+    #eventDivEnlarged{
+        width: 300px;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 50px;
+        margin-left: 0px;
+        padding-bottom: 20px;
+    }
+    #eventDivEnlarged div{
+        width: 270px;
+    }
+    #belowDivEvent{
+        width: 270px;
+    }
+    #divTags p{
+        font-weight: 600;
+        border: 3px var(--basic-border-color) solid;
+        border-radius: 15px;
+        font-size: small;
+    }
+    #eventDivEnlarged p{
+        font-size: small;
+    }
+    #sectionEvents.singleEvent{
+        padding: 0px;
+    }
+    #eventDivEnlarged .upperEventDiv{
+        flex-direction: column;
+        gap: 20px;
+    }
+    #eventDivEnlarged h4{
+        margin-top: 30px;
+    }
+}
+
+/*340px*/
+@media (max-width: 340px){
+    #eventDivEnlarged{
+        width: 250px;
+    }
+    #eventDivEnlarged div{
+        width: 200px;
+    }
+    #belowDivEvent p{
+        font-size: small
+    }
+    #eventDivEnlarged h4{
+        text-align: center;
+    }
+    #divTags p{
+        font-size: small;
+    }
+}

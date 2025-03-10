@@ -1,0 +1,44 @@
+
+nav{
+    border-top: solid 4px var(--basic-letter-color);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a{
+    color:var(--basic-letter-color);
+    font-weight: 700;
+    font-size: larger;
+}
+
+/*700px*/
+
+@media (max-width: 700px){
+    nav a{
+        font-size: medium;
+    }
+}
+
+/*480px*/
+
+@media (max-width: 480px){
+    nav a{
+        font-size: small;
+    }
+}
+
+/*320px*/
+
+@media (max-width: 340px){
+    nav a{
+        font-size: 10px;
+    }
+}

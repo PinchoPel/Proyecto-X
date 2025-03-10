@@ -1,0 +1,45 @@
+header{
+    height: fit-content;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--header-background-color);
+}
+
+h1{
+    color: var(--h1-color);
+    font-size: 60px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 700px){
+    h1{
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 600px){
+    h1{
+        font-size: 40px;
+    }
+}
+
+/*450px*/
+
+@media (max-width: 450px){
+    h1{
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 380px){
+    h1{
+        font-size: 30px;
+    }
+}

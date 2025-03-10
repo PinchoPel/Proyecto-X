@@ -1,0 +1,240 @@
+.navBarLogin{
+    display: flex;
+    justify-content: center;
+}
+#sectionLogin{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    height: fit-content;
+    flex-wrap: wrap;
+    background-color:var(--darker-background-color);
+    gap: 40px;
+    padding-bottom: 30px;
+    margin-top: 170px;
+}
+
+#divLogin, #divRegister{
+    min-height: 500px;
+    width: 400px;
+    border: 4px solid var(--basic-border-color);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 20px;   
+    background-color: var(--basic-background-color);
+}
+#divRegister h2{
+    margin-left: 25px;
+}
+#formToRegister, #formToLogin{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 250px;
+}
+#sectionLogin  h2{
+    color:  var(--basic-letter-color);
+    font-weight: 900;
+    font-size: 30px;
+}
+#sectionLogin label{
+    text-align: center;
+    font-weight: 600;
+    color:  var(--basic-letter-color);
+}
+#sectionLogin input{
+    border: var(--basic-letter-color) solid 2px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: var(--basic-input-color);
+    width: 220px;
+}
+#sectionLogin input::placeholder{
+    color: var(--basic-letter-color);
+    text-align: center;
+    white-space: wrap;
+}
+#sectionLogin button{
+    border-color:  var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+#divPasswordLogin{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#divToggleLogin{
+    display: flex;
+    align-items: center;
+    width: 350px;
+    justify-content: flex-end;
+}
+#toggleButtonPasswordLogin{
+    margin-top: 160px;
+    margin-left: 10px;
+}
+#divToggleRgister{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 350px;
+    justify-content: flex-start
+}
+#toggleButtonPasswordRegister{
+    margin-top: 220px;
+    margin-left: 5px;
+}
+.toggleeye{
+    width: 20px;
+    height: 20px;
+}
+.errorFormMessage{
+    color: var(--error-message-color);
+    animation: parpadeo 1.5s infinite;
+    text-align: center;
+}
+@keyframes parpadeo {
+    0% { opacity: 1; } 
+    50% { opacity: 0; } 
+    100% { opacity: 1; } 
+  }
+  #buttonHome{
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+  }
+
+/*856PX*/
+@media (max-width: 856px){
+    #divRegister{
+        margin-bottom: 20px;
+    }
+    #toggleButtonPasswordRegister{
+        margin-top: 220px;
+        margin-left: 5px;
+    }
+    #toggleButtonPasswordLogin{
+        margin-top: 160px;
+        margin-left: 5px;
+    }
+}
+
+/*480PX*/
+@media (max-width: 480px){
+    #divLogin, #divRegister{
+        min-height: 400px;
+        width: 300px;
+        border-radius: 20px; 
+    }
+    #divRegister h2{
+        margin-left: 0px;
+    }
+    #formToRegister, #formToLogin{
+        height: 350px;
+        width: 200px;
+    }
+    #sectionLogin  h2{
+        font-size: 25px;
+    }
+    #sectionLogin label{
+        font-size:medium;
+        font-weight: 600;
+    }
+    #sectionLogin input{
+        width: 190px;
+        padding: 5px;
+    }
+    #divToggleLogin{
+        justify-content: center;
+        margin-left: 25px;
+    }
+    #toggleButtonPasswordLogin{
+        margin-top: 140px;
+        margin-left: 10px;
+    }
+    #divToggleRgister, #divToggleLogin{
+        justify-content: center;
+        margin-left: 20px;
+        width: 290px;
+    }
+    #toggleButtonPasswordRegister{
+        margin-top: 195px;
+        margin-left: 10px;
+    }
+    .toggleeye{
+        width: 15px;
+        height: 15px;
+    }
+    .errorFormMessage{
+        font-size: smaller
+    }
+}
+
+/*350px*/
+
+@media (max-width: 350px){
+    #divLogin, #divRegister{
+        min-height: 300px;
+        width: 230px;
+        border-radius: 20px; 
+    }
+    #sectionLogin  h2{
+        font-size: 20px;
+    }
+
+    #formToRegister, #formToLogin{
+        height: 300px;
+        width: 150px;
+    }
+    #sectionLogin label{
+        font-size:small;
+        font-weight: 600;
+    }
+    #sectionLogin input{
+        padding: 3px;
+        width: 144px;
+    }
+    #sectionLogin input::placeholder{
+        font-size: 10px;
+    }
+    #sectionLogin button{
+        padding: 5px;
+        font-weight: 600;
+        font-size: 12px;
+    }
+    #toggleButtonPasswordLogin{
+        margin-top: 120px;
+        margin-left: 10px;
+    }
+    #toggleButtonPasswordRegister{
+        margin-top: 170px;
+        margin-left: 10px;
+    }
+
+    #divToggleRgister{
+        margin-left: 25px;
+    }
+    .errorFormMessage{
+        font-size: small;
+    }
+}
+
+/*315px*/
+
+@media (max-width: 315px){
+    #divToggleRgister, #divToggleLogin{
+        width: fit-content;
+    }
+}

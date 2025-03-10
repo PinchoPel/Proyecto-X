@@ -1,0 +1,112 @@
+
+footer{
+    width: 100vw;
+    min-height: 100px;
+    background-color: var(--aside-background-color);
+    display: flex;
+    padding-left: 200px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+footer a{
+    color: var(--basic-letter-color);
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+}
+footer.termsFooter{
+    padding: 0px;
+}
+#sectionEvents.terms{
+    margin-left: 0px;
+    text-align: center;
+    color: var(--basic-letter-color);
+    font-weight: 600;
+    width: 100vw;
+    padding: 0px 60px 40px 60px;
+}
+#sectionEvents.terms h2{
+    margin-left: 0px;
+}
+#sectionEvents.terms h3{
+    font-size: 25px;
+}
+#sectionEvents.terms button{
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: var(--basic-letter-color);
+    font-weight: 700;
+    padding: 5px;
+    font-size: large;
+    background-color: var(--aside-background-color);
+}
+@media (max-width: 690px){
+    footer{
+        padding-left: 150px;
+    }
+}
+
+@media (max-width: 550px){
+    #sectionEvents.terms{
+        font-size: medium;
+    }
+    footer{
+        font-size: small;
+        padding-left: 100px;
+    }
+    footer a{
+        font-weight: 700;
+    }
+    #sectionEvents.terms h3{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px){
+    footer{
+        padding-left: 0px;
+    }
+}
+
+@media (max-width: 420px){
+    #sectionEvents.terms{
+        font-size: small;
+        padding: 0px 40px 30px 40px;
+    }
+    footer a{
+        font-size: small;
+        width: 150px;
+    }
+    #sectionEvents.terms h2{
+        font-size: 20px;
+    }
+    #sectionEvents.terms h3{
+        font-size: 15px;
+    }
+    #sectionEvents.terms button{
+        width: 100px;
+        margin-top: 20px;
+        padding: 3px;
+        font-size: medium;
+    }
+}
+
+@media (max-width: 390px){
+    #sectionEvents.terms{
+        font-size: small;
+    }
+    footer a{
+        font-size: small;
+    }
+}
+
+@media (max-width: 340px){
+    #sectionEvents.terms{
+        font-size: 11px;
+    }
+    footer a{
+        font-size: 11px;
+        width: 110px;
+    }
+}

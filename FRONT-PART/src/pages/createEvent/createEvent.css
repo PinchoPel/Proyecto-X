@@ -1,0 +1,250 @@
+#sectionEvents.CreateEvent{
+    margin-top: 180px;
+    margin-left: 0px;
+    padding-left: 0px;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    height: fit-content;
+}
+
+#createEventForm{
+    border: 5px solid var(--basic-border-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    border-radius: 20px;
+    align-items: center;
+    background-color: var(--basic-background-color);
+}
+#createEventForm legend{
+    text-align: center;
+    color:var(--basic-letter-color);
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+#createElementFieldset{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: fit-content;
+    justify-content: space-evenly;
+    border: none;
+    gap: 20px;    
+    align-items: center
+}
+#createEventForm label {
+    color:var(--basic-letter-color);
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+#createEventTitle{
+    width: 300px;
+    border-radius: 10px;
+    border-color: var(--basic-border-color);
+    border-width: 3px;
+    padding-left: 5px;
+}
+#createEventTitle::placeholder{
+    text-align: center;
+    color: var(--basic-letter-color);
+    font-weight: 600;
+    font-style: italic;
+}
+#createEventImage{
+    display: none;
+}
+ #createEventImageLabel{
+    border: dashed var(--basic-border-color) 3px;
+    background-color: var(--aside-background-color);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+}
+.visiblePreviousImage{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+}
+#createEventDate{
+    color: var(--basic-letter-color);
+    width: 130px;
+    text-align: center;
+    border-radius: 10px;
+    border-color: var(--basic-border-color);
+    border-width: 3px;
+    font-weight: 600;
+}
+#createEventLocation{
+    width: 180px;
+    text-align: center;
+    color: var(--basic-letter-color);
+    border-radius: 10px;
+    border-color: var(--basic-border-color);
+    border-width: 3px;
+    overflow-y: scroll;
+}
+#createEventLocation option{
+    font-weight: 600;
+}
+#createEventTag{
+    width: 200px;
+    height: 90px;
+    text-align: center;
+    color: var(--basic-letter-color);
+    border-radius: 10px;
+    border-color: var(--basic-border-color);
+    border-width: 3px;
+}
+#createEventTag option{
+    font-weight: 600;
+}
+#selectedOptions, .modifiedEventtagsSelected{
+    color: var(--basic-letter-color);
+    font-weight: 700;
+    text-align: center;
+}
+#createEventDescription{
+    width: 500px;
+    height: 170px;
+    margin-bottom: 30px;
+    color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 4px;
+
+}
+#createEventDescription::placeholder{
+    color: var(--basic-letter-color);
+    font-style: italic;
+}
+#createEventForm button{
+    width: 150px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: var(--basic-letter-color);
+    font-weight: 700;
+    padding: 5px;
+    font-size: large;
+    background-color: var(--aside-background-color);
+}
+.errorFormMessage{
+    color: var(--error-message-color);
+    animation: parpadeo 1.5s infinite;
+    text-align: center;
+}
+@keyframes parpadeo {
+    0% { opacity: 1; } 
+    50% { opacity: 0; } 
+    100% { opacity: 1; } 
+  }
+  #divAfterCreateElement{
+    margin-top: 150px;
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: solid var(--basic-border-color) 5px;
+    border-radius: 20px;
+  }
+  #divAfterCreateElement p{
+    color: var(--basic-letter-color);
+    font-weight: 800;
+  }
+  #divForButtons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly
+  }
+#divForButtons button{
+    border-radius: 10px;
+    padding: 8px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+
+/*800px*/
+
+@media(max-width: 800px){
+    #createElementFieldset{
+        width: 520px;
+    }
+    #createEventImageLabel{
+        width: 400px;
+    }
+}
+
+/*570px*/
+
+@media(max-width: 570px){
+    #createElementFieldset{
+        width: 400px;
+    }
+    #createElementFieldset legend{
+        font-size: 30px;
+    }
+    #createElementFieldset label{
+        font-size: 15px;
+        width: 300px;
+    }
+    #createEventDescription{
+        width: 320px;
+    }
+}
+
+/*450px*/
+
+@media(max-width: 470px){
+    #sectionEvents.CreateEvent{
+        padding: 0;
+        margin-top: 140px;
+    }
+    #createElementFieldset{
+        width: 350px;
+    }
+    .visiblePreviousImage{
+        width: 90px;
+        height: 90px;
+    }
+
+    #createElementFieldset input, option{
+        font-size: 12px;
+        background-color: var(--basic-input-color);
+    }
+    #createEventForm button{
+        font-size: 15px;
+        width: 120px;
+    }
+}
+/*400px*/
+
+@media (max-width: 400px){
+
+#createElementFieldset{
+    width: 250px;
+}
+#createElementFieldset legend{
+    font-size: 20px;
+}
+#createElementFieldset label{
+    font-size: 12px;
+    width: 200px;
+}
+#createEventTitle{
+    width: 200px;
+}
+#createEventDescription{
+    width: 220px;
+}
+.visiblePreviousImage{
+    width: 70px;
+    height: 70px;
+}
+}

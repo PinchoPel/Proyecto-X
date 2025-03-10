@@ -1,0 +1,318 @@
+#sectionEvents.myProfile{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 0px;
+    margin-top: 220px;
+}
+#divMyProfile{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 50px;
+    align-items: center;
+    width: 600px;
+    border: solid var(--basic-border-color) 5px;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    background-color: var(--basic-background-color);
+}
+#divMyProfile button, #buttonCancel, #buttonConfirm{
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+#upperDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-around
+}
+#divDataProfile{
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+#formDataProfile{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 10px;
+    width: 200px;
+}
+#formDataProfile input{
+    border: none;
+    background-color: transparent;
+    color: var(--basic-letter-color);
+}
+#formDataProfile input::placeholder{
+    color: var(--basic-letter-color);
+}
+#formDataProfile label, #pCreated{
+    font-weight: 700;
+    color:  var(--basic-letter-color);
+}
+#formDataProfile p{
+    color: var(--basic-letter-color);
+}
+#formImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    gap: 10px;
+    align-items: stretch
+}
+#labelImageMyProfile{
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: dashed var(--basic-border-color) 3px;
+    background-color: var(--aside-background-color);
+    color: var(--basic-letter-color);
+    font-weight: 700;
+}
+#labelImageMyProfile.hidden{
+    display: none;
+    visibility: hidden;
+}
+#ImageMyProfile{
+    display: none;
+}
+#previousSightImage.visiblePreviousImage{
+    width: 200px;
+    height: 200px;
+}
+#imageUploadProfile{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+}
+#divButton{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-evenly;
+    border-top: solid var(--basic-border-color) 3px;
+    padding-top: 20px;
+}
+#formDataProfile input.modify{
+    background-color: var(--basic-input-color);
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.toggleeye{
+    width: 20px;
+    height: 20px;
+}
+#revealButton{
+    width: 50px;
+    margin-left: 75px;
+}
+.backgroundDiv{
+    position:fixed;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px); 
+    flex: 1;
+}
+.modalDiv{
+    background-color: var(--aside-background-color);
+    border: var(--basic-border-color), 4px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    width: 500px;
+    height: 250px;
+    padding: 30px;
+}
+#modalButtonDiv{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+#modalH4{
+    text-align: center;
+    color: var(--basic-letter-color);
+}
+#userId{
+    display: none;
+    visibility: hidden;
+    user-select: none;
+}
+#divFormAdmin, #formAdminSearchUser{
+    width: 600px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--basic-background-color);
+}
+#divFormAdmin{
+    padding: 10px;
+    border: var(--basic-border-color), 4px solid;
+    border-radius: 10px;
+}
+#divFormAdmin label{
+    font-weight: 700;
+    color:  var(--basic-letter-color);
+    text-align: center;
+}
+#searchOtherUser{
+    background-color: var(--basic-input-color);
+    border-radius: 5px;
+    padding-left: 5px;
+}
+#divFormAdmin button{
+    border-color: var(--basic-letter-color);
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+
+/*675px*/
+
+@media (max-width: 675px){
+    #divMyProfile{
+        width: 400px;
+        margin-bottom: 50px;
+    }
+    #upperDiv{
+        flex-direction: column;
+        align-items: center;
+        gap:30px
+    }
+    #formImage{
+        align-items: center
+    }
+    #formImage label{
+        width: 150px;
+        height: 50px;
+        padding: 20px;
+    }
+    #formDataProfile{
+        display: flex;
+        align-items: center;
+    }
+    #labelImageMyProfile{
+        font-size: 14px;
+    }
+    #previousSightImage.visiblePreviousImage, #imageUploadProfile{
+        width: 150px;
+        height: 150px;
+    }
+    #formDataProfile, #formDataProfile input{
+        text-align: center;
+    }
+    #revealButton{
+        margin: 0px;
+    }
+    .modalDiv{
+        width: 400px;
+        height: 205px;
+        padding: 20px;
+    }
+    #modalH4{
+        font-size: 14px;
+    }
+    #divFormAdmin, #formAdminSearchUser{
+        width: 400px;
+    }
+}
+
+/*450px*/
+
+@media (max-width: 450px){
+    #sectionEvents.myProfile{
+
+        margin-top: 180px;
+    }
+    #divMyProfile{
+        width: 250px;
+        padding: 15px;
+        height: fit-content;
+        gap: 20px;
+    }
+    #previousSightImage.visiblePreviousImage, #imageUploadProfile{
+        width: 150px;
+        height: 150px;
+    }
+    #upperDiv{
+        height: 100%;
+    }
+    #divMyProfile label, #divMyProfile p, button, #buttonCancel, #buttonConfirm, #divFormAdmin label{
+        font-size: small;
+    }
+    .modalDiv{
+        width: 300px;
+        height: 150px;
+        padding: 10px;
+    }
+    #modalH4{
+        font-size: 12px;
+    }
+    #divFormAdmin, #formAdminSearchUser{
+        width: 250px;
+        padding: 15px;
+        gap: 20px;
+    }
+}
+/*375px*/
+@media (max-width: 345px){
+    .modalDiv{
+        width: 200px;
+        height: 170px;
+        padding: 10px;
+    }
+    #modalH4{
+        font-size: 12px;
+    }
+    #buttonCancel, #buttonConfirm{
+        font-size: 10px;
+    }
+}
+
+/*300px*/
+@media (max-width: 300px){
+    #divMyProfile, #divFormAdmin, #formAdminSearchUser{
+        width: 200px;
+    }
+    #divMyProfile label, #divMyProfile p, button, #buttonCancel, #buttonConfirm, #divFormAdmin label{
+        font-size: 11px;
+    }
+    #divDataProfile{
+        align-items: center;
+    }
+    #formDataProfile{
+        width: 130px;
+    }
+    #divDataProfile p {
+        text-align: center;
+        max-width: 100px;
+        padding: 5px;
+    }
+}

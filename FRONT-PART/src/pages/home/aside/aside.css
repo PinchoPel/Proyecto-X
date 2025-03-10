@@ -1,0 +1,260 @@
+
+#asideSectionHome{
+    min-width: 250px;
+    height: 100vh;
+    background-color: var(--aside-background-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    margin-top: 177px;
+}
+#toggleButtonAsideMenu{
+    display: none;
+}
+
+#divAside{
+    height: fit-content;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#divAside form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#rangeDateForm{
+    height: 200px;
+    padding-bottom: 2px;
+    border-bottom: solid 1px var(--basic-letter-color);
+}
+#rangeDateForm fieldset{
+    height: 100%;
+    display: flex;
+    border: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#rangeDateForm legend{
+    font-weight: 600;
+    color: var(--basic-letter-color);
+}
+#rangeDateForm input{
+    color: var(--basic-letter-color);
+    background-color: var(--basic-input-color);
+}
+#searchByProvinceDiv, #searchByTagDiv{
+    height: 60px;
+    justify-content: space-around;
+    width:  90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top: solid 1px var(--basic-letter-color);
+}
+#searchByProvince, #searchByTag{
+    color: var(--basic-letter-color);
+    text-align: center;
+    background-color: var(--basic-input-color);
+}
+#searchByProvinceDiv{
+    border-bottom: solid 1px var(--basic-letter-color);
+    padding-bottom: 5px;
+}
+#asideSectionHome legend, #asideSectionHome  label{
+    color: var(--basic-letter-color);
+    font-weight: 600;
+    text-align: center;
+}
+#asideSectionHome input{
+    border-radius: 10px;
+    text-align: center;
+    border-color: var(--basic-border-color);
+    width: 150px;
+    background-color: var(--basic-input-color);
+}
+#asideSectionHome input::placeholder{
+    color: var(--basic-letter-color);
+    font-style: oblique;
+    text-align: center;
+    background-color: var(--basic-input-color);
+}
+#asideSectionHome button{
+    border-radius: 10px;
+    padding: 5px;
+    color:  var(--basic-letter-color);
+    background-color: var(--basic-button-color);
+    font-weight: 800;
+}
+#asideSectionHome select{
+    border-radius: 10px;
+    border-color:  var(--basic-letter-color);
+    width: 150px; 
+    color: var(--basic-letter-color);
+    text-align: center;
+    max-height: 20px;
+}
+.errorAsideMessage{
+    color: var(--basic-letter-color);
+    animation: parpadeo 2s infinite;
+    text-align: center;
+    font-size: large;
+    font-weight: 700;
+    width: 300px;
+}
+@keyframes parpadeo {
+    0% { opacity: 1; } 
+    50% { opacity: 0; } 
+    100% { opacity: 1; } 
+  }
+
+/*930px*/
+@media (max-width: 930px){
+    #asideSectionHome{
+        min-width: 200px;
+        max-width: 200px;
+    }
+    #asideSectionHome form, #divAside div{
+        width: 180px;
+    }
+    #asideSectionHome input{
+        width: 140px;
+        background-color: var(--basic-input-color);
+    }
+    #asideSectionHome legend, #divAside  label{
+        font-weight: 500;
+    }
+}
+
+/*700px*/
+@media(max-width: 700px){
+    #asideSectionHome {
+        margin-top: 160px;
+    }
+    #asideSectionHome, #divAside{
+        min-width: 150px;
+        max-width: 150px;
+        font-size: 13px;
+    }
+    #asideSectionHome form, #asideSectionHome select, #asideSectionHome input, #divAside div{
+        width: 130px;
+        font-size: 13px;
+    }
+    #asideSectionHome button{
+        font-weight: 600;
+    }
+    #asideSectionHome button{
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 600px){
+    #asideSectionHome {
+        margin-top: 150px;
+    }
+}
+
+/*550px*/
+@media(max-width: 550px){
+    #asideSectionHome, #divAside{
+        min-width: 110px;
+        max-width: 110px;
+    }
+    #asideSectionHome form, #asideSectionHome select, #asideSectionHome input, #divAside div{
+        width: 90px;
+    }
+    #rangeDateForm input{
+        font-size: x-small;
+        padding: 2px;
+    }
+    #asideSectionHome legend, #asideSectionHome  label{
+        font-size: small;
+        font-weight: 600;
+    }
+    #asideSectionHome input::placeholder{
+        font-size: small;
+    }
+    #asideSectionHome button{
+        font-weight: 500;
+        font-size: x-small;
+    }
+    #asideSectionHome select{
+        font-size: x-small;
+    }
+}
+
+/*450px*/
+@media(max-width: 450px){
+    #asideSectionHome {
+        min-width: 40px;
+        max-width: 40px;
+        transition: 0.5s ease;
+        margin-top: 145px;
+    }
+    #asideSectionHome.expand{
+        min-width: 150px;
+        max-width: 150px;
+    }
+    #divAside{
+        width: 0px;
+        overflow: hidden;
+        transition:  width 0.7s ease;
+    }
+    #divAside.expand{
+        display: flex;
+        padding-top: 0px;
+        justify-content: center;
+        height: 440px;
+        min-width: 150px;
+        transition: 0.7s ease;
+    }
+    #divAside *{
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.7s ease, max-height 0.7s ease;
+    }
+    #divAside.expand *{
+        opacity: 1;
+        max-height: 470px;
+    }
+    #divAside.expand form, #divAside.expand div{
+        width: 130px;
+        border-top: solid 1px var(--basic-letter-color);
+    }
+    #divAside.expand div{
+        height: 50px;
+    }
+    #toggleButtonAsideMenu{
+        display: block;
+        background-color: var(--h1-color);
+        width: fit-content;
+        height: fit-content;
+        margin-top: 10px;
+    }
+    #toggleButtonImageAsideMenu{
+        width: 20px;
+        height: 20px;
+        color: var(--basic-letter-color);
+    }
+    .errorAsideMessage{
+        font-size: medium;
+        font-weight: 700;
+        width: 200px;
+    }
+}
+
+/*380px*/
+@media(max-width: 380px){
+    #asideSectionHome{
+        margin-top: 140px;
+    }
+}
