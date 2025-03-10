@@ -8,7 +8,11 @@ const cors = require("cors");
 const app = express();
 connectDB();
 connectCloudinary();
-app.use(cors({allowedHeaders: ['Content-Type', 'Authorization']}));
+app.use(cors({
+    origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://proyecto-x-kohl.vercel.app'],  
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  }));
 app.use(express.json());
 
 app.use("/ping", (req,res,next) => {
