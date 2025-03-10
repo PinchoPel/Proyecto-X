@@ -8,11 +8,7 @@ const cors = require("cors");
 const app = express();
 connectDB();
 connectCloudinary();
-app.use(cors({
-    origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://proyecto-x-kohl.vercel.app'],  
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  }));
+app.use(cors({allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(express.json());
 
 app.use("/ping", (req,res,next) => {
@@ -25,7 +21,6 @@ app.use("*", (req,res,next) => {
     return res.status(404).json("Ruta no encontrada")
 });
 
-const port = process.env.PORT || 3000; 
-app.listen(port, () => {
-    console.log(`Servidor conectado en: http://localhost:${port}/`);   
+app.listen(3000, () => {
+    console.log("Servidor conectado en: http://localhost:3000/");   
 });
