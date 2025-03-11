@@ -9,7 +9,7 @@ export const changeImageProfile = (input, label, button) => {
     label.classList.remove("hidden");
     button.textContent = "No hacer cambios";
     if (button.textContent = "No hacer cambios") {         
-        button.addEventListener("click", async ()=> await renderMyProfile(await fetchUser(`/myProfile/${userId.textContent}`)));
+        button.addEventListener("click", async ()=> await renderMyProfile(await fetchUser(`myProfile/${userId.textContent}`)));
     }
 };
 
@@ -32,7 +32,7 @@ export const enableDataInputProfile =  (button, inputUserName, inputEmail, input
     inputPass.value = "";
     inputPass.placeholder = "Nueva contraseña..."
     if (button.textContent = "No hacer cambios") {         
-        button.addEventListener("click", async ()=> await renderMyProfile(await fetchUser(`/myProfile/${userId.textContent}`)));
+        button.addEventListener("click", async ()=> await renderMyProfile(await fetchUser(`myProfile/${userId.textContent}`)));
     }
 };
 
