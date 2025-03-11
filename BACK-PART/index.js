@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 connectCloudinary();
 app.use(cors({
-    origin: "https://proyecto-x-theta.vercel.app/#", 
+    origin: "https://proyecto-x-theta.vercel.app", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization"
   }));
