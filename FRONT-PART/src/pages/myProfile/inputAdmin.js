@@ -28,6 +28,6 @@ export const createInputAdmin = () =>{
             return;
           }
         event.preventDefault()
-        await renderMyProfile(await fetchUser(`/user/${inputUser.value}`));
+        await renderMyProfile(await fetchUser(`user/${inputUser.value}`));
     });
 };
