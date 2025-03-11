@@ -72,7 +72,7 @@ waitForDOM("#searchByProvince").then(province => {
         try {
             event.preventDefault();  
             objectFilter.province = event.target.value !== document.querySelector("#firstOptionProvince") ? event.target.value : null;
-            const provinces = await eventsFetch(`/eventlocation/${objectFilter.province}`);
+            const provinces = await eventsFetch(`eventlocation/${objectFilter.province}`);
             filteredEvents = provinces; 
             await applyFilters();
             document.querySelector("#firstOptionProvince").remove(); 

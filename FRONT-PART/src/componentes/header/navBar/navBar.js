@@ -73,7 +73,7 @@ export const createNavBar = () => {
                 const footer = document.querySelector("footer");
                 aside.classList = "hidden";
                 footer.classList = "termsFooter";
-                await renderMyProfile(await fetchUser("/myProfile"));
+                await renderMyProfile(await fetchUser("myProfile"));
                 const myEvents = document.querySelector("#Mis-eventos");
                 myEvents.textContent = "Mis eventos";
                 const createEvent = document.querySelector("#Crear-evento");

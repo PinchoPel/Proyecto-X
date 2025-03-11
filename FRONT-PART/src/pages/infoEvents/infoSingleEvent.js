@@ -58,6 +58,8 @@ export const infoSingleEvent = async  (eventId) => {
         }
         for (const participant of participants) {
             if (participant.userName == userName ) {
+                console.log(participant.userName);
+                console.log(participant.userName);
                 participateImage.src = "./src/images/exit-door-sign-svgrepo-com.svg";
                 spanparticipateButton.textContent = "Salir del evento";
             }else{
