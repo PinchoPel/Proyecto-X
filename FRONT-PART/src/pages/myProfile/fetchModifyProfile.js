@@ -18,7 +18,7 @@ export const fetchModifyProfile = async (route, formSelector) => {
         
         if (response.ok) {
             await response.json();
-            renderMyProfile(await fetchUser(`/myProfile/${userId.textContent}`));
+            renderMyProfile(await fetchUser(`myProfile/${userId.textContent}`));
         }
        else if (!response.ok) {
             const errorMessage = await response.json();
