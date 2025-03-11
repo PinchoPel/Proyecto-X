@@ -4,7 +4,7 @@ export const fetchSignUp = async (eventId) => {
     try {
         loadScreen();
         const token = localStorage.getItem("userToken");
-        const response = await fetch(`http://localhost:3000/api/v1/events/signupevent/${eventId}`,{
+        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/signupevent/${eventId}`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

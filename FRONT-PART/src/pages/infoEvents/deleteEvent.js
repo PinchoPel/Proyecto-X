@@ -6,7 +6,7 @@ export const fetchDeleteEvent = async (eventId) => {
         const token = localStorage.getItem("userToken");
         const auth= token ? { "Authorization": `Bearer ${token}` } : {};
     
-        const response = await fetch(`http://localhost:3000/api/v1/events/deleteEvent/${eventId}`, {
+        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/deleteEvent/${eventId}`, {
             method: "DELETE",
             headers:
             {"Content-Type": "application/json",

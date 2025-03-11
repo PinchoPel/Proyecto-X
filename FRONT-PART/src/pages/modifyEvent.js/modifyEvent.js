@@ -75,7 +75,7 @@ export const modifySingleEvent = async (eventId) => {
             selectedTags.forEach(opcion => {
                 modifyEventForm.append("tags[]", opcion);
             });  
-            const response = await fetch(`http://localhost:3000/api/v1/events/modifyEvent/${eventId}`,{
+            const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/modifyEvent/${eventId}`,{
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`

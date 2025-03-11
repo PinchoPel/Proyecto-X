@@ -4,7 +4,7 @@ import { errorRegisterForm } from "./errorRegisterForm.js";
 export const registerFetch = async (userName, email, password) => { 
     try {
         loadScreen();
-        const response = await fetch("http://localhost:3000/api/v1/users/register",{
+        const response = await fetch("https://proyecto-x-backend.vercel.app/api/v1/users/register",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json" 

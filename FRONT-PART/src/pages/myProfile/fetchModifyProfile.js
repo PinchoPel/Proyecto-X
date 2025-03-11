@@ -8,7 +8,7 @@ export const fetchModifyProfile = async (route, formSelector) => {
         const userId = document.querySelector("#userId");
         const token = localStorage.getItem("userToken");
         const modifyProfileForm = new FormData(document.querySelector(formSelector));
-        const response = await fetch(`http://localhost:3000/api/v1/users/${route}/${userId.textContent}`,{
+        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/users/${route}/${userId.textContent}`,{
             method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`

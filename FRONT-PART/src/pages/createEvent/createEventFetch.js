@@ -12,7 +12,7 @@ export const createEventFetch = async (selected) => {
         selected.forEach(opcion => {
             createEventForm.append("tags[]", opcion);
         });  
-        const response = await fetch(`http://localhost:3000/api/v1/events/newEvent`,{
+        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/newEvent`,{
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`
