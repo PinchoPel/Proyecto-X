@@ -8,7 +8,11 @@ const cors = require("cors");
 const app = express();
 connectDB();
 connectCloudinary();
-app.use(cors({allowedHeaders: ['Content-Type', 'Authorization']}));
+app.use(cors({
+    origin: "https://proyecto-x-theta.vercel.app/#", 
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
+  }));
 app.use(express.json());
 
 app.use("/ping", (req,res,next) => {
