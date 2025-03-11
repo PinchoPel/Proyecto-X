@@ -6,7 +6,7 @@ const auth= token ? { "Authorization": `Bearer ${token}` } : {};
 export const eventsFetch = async (route) => {
     try {
         loadScreen();
-        const response = await fetch(`http://localhost:3000/api/v1/events/${route}`, {
+        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/${route}`, {
             method: "GET",
             headers:
             {"Content-Type": "application/json",
