@@ -19,10 +19,12 @@ export const leaveEvent = async  (sectionEvents, eventDivEnlarged, author) => {
     }
     else if (myEvents) {
         if (myEvents.textContent == "Volver al Inicio" && userName == author) {
+            sectionEvents.classList.remove("singleEvent");
             await renderMyCreatedEvents();   
             cleanFilters();  
             }
         else if (myEvents.textContent == "Volver al Inicio" && userName !== author){
+            sectionEvents.classList.remove("singleEvent");
             await renderSignedUpEvent();
             cleanFilters();
         }
