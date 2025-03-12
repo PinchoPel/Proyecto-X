@@ -1,6 +1,6 @@
 
-import { filteredEvents, objectFilter } from "./asideFunctions";
-import { elementToClean } from "./elementToClean";
+import { filteredEvents, objectFilter } from "./asideFunctions.js";
+import { elementToClean } from "./elementToClean.js";
 
 export const cleanFilters = () => {
     objectFilter.startdate = null;
