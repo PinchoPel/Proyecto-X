@@ -2,8 +2,8 @@ import { linkCSS } from "../../../componentes/common/linkCSS.js";
 import { waitForDOM } from "../../../componentes/common/waitForDOM.js";
 import { eventsFetch } from "../section/eventsFetch.js";
 import { renderEvents } from "../section/renderEvents.js";
+import { cleanFilters } from "./cleanFilters.js";
 import { dataFilter } from "./dataFilter.js";
-import { elementToClean } from "./elementToClean.js";
 import { noEvents } from "./noEvents.js";
 linkCSS("./src/pages/home/aside/aside.css");
 
@@ -22,8 +22,8 @@ export const asideToggle = (aside, div, image) => {
     }
 };
 
-let filteredEvents = []; 
-let objectFilter = {
+export let filteredEvents = []; 
+export let objectFilter = {
   startdate: null,
   enddate: null,
   province: null,
@@ -105,18 +105,6 @@ waitForDOM("#cleanFilters").then( clean => {
         clean.addEventListener("click", async () => {
         const events = await eventsFetch("orderdates/1");
         await renderEvents(events);
-        elementToClean("#searchByProvince", "firstOptionProvince");
-        elementToClean("#searchByTag", "firstOptionTag");
-
-        const startDate = document.querySelector("#rangeDateStartInput");
-        const endDate = document.querySelector("#rangeDateEndInput");
-        startDate.value = "";
-        endDate.value = "";
-
-        objectFilter.startdate = null;
-        objectFilter.enddate = null;
-        objectFilter.province = null;
-        objectFilter.tag = null;   
-        filteredEvents.length = 0; 
+        cleanFilters();
     });
 });

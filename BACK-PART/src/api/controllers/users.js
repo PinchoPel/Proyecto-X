@@ -116,7 +116,13 @@ const modifyDataUser = async (req,res,next) => {
     try {
         const { id } = req.params; 
         const { password, ...updatedData } = req.body;
-        await User.findById(id);
+        const user = await User.findById(id);
+        const authorEvent = user.userName;
+        
+        await Event.updateMany(
+            { author: authorEvent }, 
+            { $set: { author: updatedData.userName } } 
+        );
 
         const errors = [];
         const userNameError = userNameJoiSchema.validate({ userName: updatedData.userName });
