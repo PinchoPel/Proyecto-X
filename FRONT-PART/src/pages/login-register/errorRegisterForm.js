@@ -25,6 +25,7 @@ export const errorRegisterForm = (error, divSelector) => {
     };
 
     manageErrors(`"userName" length must be at least 3 characters long`, inputNameRegister, "errorNameMessage", "El nombre de usuario debe tener entre 3 y 10 caracteres");
+    manageErrors(`"userName" length must be less than or equal to 10 characters long`, inputNameRegister, "errorNameMessage", "El nombre de usuario debe tener entre 3 y 10 caracteres");
     manageErrors('"email" must be a valid email', inputEmailRegister, "errorEmailMessage", "Se debe introducir un correo electrónico válido");
     manageErrors('"password" length must be at least 5 characters long', inputPasswordRegister, "errorPasswordMessage", "La contraseña debe tener 5 caracteres como mínimo")
 };
