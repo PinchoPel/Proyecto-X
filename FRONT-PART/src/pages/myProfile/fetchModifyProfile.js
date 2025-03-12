@@ -26,7 +26,6 @@ export const fetchModifyProfile = async (route, formSelector) => {
         let arrayErrors = errorMessage.errors;
         const divDataProfile = document.querySelector("#divDataProfile");            
         const createPError =  (ownClass, textContent) => {
-            console.log("punto0");
             const errorFormMessage = document.createElement("p");
             errorFormMessage.classList.add(ownClass, "errorFormMessage");
             errorFormMessage.textContent = textContent;

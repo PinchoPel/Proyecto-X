@@ -119,11 +119,6 @@ const modifyDataUser = async (req,res,next) => {
         const { password, ...updatedData } = req.body;
         const user = await User.findById(id);
         const authorEvent = user.userName;
-        
-        await Event.updateMany(
-            { author: authorEvent }, 
-            { $set: { author: updatedData.userName } } 
-        );
 
         const errors = [];
         const userNameError = userNameJoiSchema.validate({ userName: updatedData.userName });
@@ -142,7 +137,11 @@ const modifyDataUser = async (req,res,next) => {
         }
         if (errors.length > 0) {
             return res.status(400).json({ errors });
-        }
+        }         
+        await Event.updateMany(
+            { author: authorEvent }, 
+            { $set: { author: updatedData.userName } } 
+        );
         const updatedUser = await User.findByIdAndUpdate(id, updatedData , { new: true });
         const token =  generateSign(updatedUser);
         return res.status(200).json({updatedUser, token});
