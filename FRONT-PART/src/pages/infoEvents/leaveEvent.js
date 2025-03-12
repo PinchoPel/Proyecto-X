@@ -17,6 +17,7 @@ export const leaveEvent = async  (sectionEvents, eventDivEnlarged, author) => {
         cleanFilters();
     }
     else if (myEvents) {
+        sectionEvents.classList.remove("singleEvent");
         if (myEvents.textContent == "Volver al Inicio" && userName == author) {
             await renderMyCreatedEvents();   
             cleanFilters();  
