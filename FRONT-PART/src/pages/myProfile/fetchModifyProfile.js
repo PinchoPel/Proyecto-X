@@ -17,7 +17,8 @@ export const fetchModifyProfile = async (route, formSelector) => {
         })
         
         if (response.ok) {
-            await response.json();
+            const userModified =  await response.json();
+            localStorage.setItem("userToken", userModified.token);
             renderMyProfile(await fetchUser(`myProfile/${userId.textContent}`));
         }
        else if (!response.ok) {

@@ -11,7 +11,6 @@ export const leaveEvent = async  (sectionEvents, eventDivEnlarged, author) => {
     if (!myEvents) {
         const aside = document.querySelector("#asideSectionHome");
         aside.classList.remove("hidden");
-        sectionEvents.classList.remove("singleEvent");
         eventDivEnlarged.classList.remove("eventDivEnlarged");
         const events = await eventsFetch("orderdates/1");
         await renderEvents(events);
@@ -19,12 +18,10 @@ export const leaveEvent = async  (sectionEvents, eventDivEnlarged, author) => {
     }
     else if (myEvents) {
         if (myEvents.textContent == "Volver al Inicio" && userName == author) {
-            sectionEvents.classList.remove("singleEvent");
             await renderMyCreatedEvents();   
             cleanFilters();  
             }
         else if (myEvents.textContent == "Volver al Inicio" && userName !== author){
-            sectionEvents.classList.remove("singleEvent");
             await renderSignedUpEvent();
             cleanFilters();
         }

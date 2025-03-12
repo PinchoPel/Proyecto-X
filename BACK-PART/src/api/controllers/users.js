@@ -143,7 +143,8 @@ const modifyDataUser = async (req,res,next) => {
             return res.status(400).json({ errors });
         }
         const updatedUser = await User.findByIdAndUpdate(id, updatedData , { new: true });
-        return res.status(200).json(updatedUser);
+        const token =  generateSign(updatedUser);
+        return res.status(200).json({updatedUser, token});
     } catch (error) {
         return res.status(400).json("No ha sido posible actualizar el perfil")
     }
