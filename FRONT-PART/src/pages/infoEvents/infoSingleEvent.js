@@ -94,6 +94,8 @@ export const infoSingleEvent = async  (eventId) => {
         eliminateButton.append(eliminateImage, spaneliminateButton);
         divActionsButtons.append(editButton, eliminateButton);
         editButton.addEventListener("click", ()=>{
+            const anchorMyEvents = document.querySelector("#Mis-eventos");
+            anchorMyEvents.textContent = "Mis eventos";
             createEvent();
             modifySingleEvent(eventId);
         });

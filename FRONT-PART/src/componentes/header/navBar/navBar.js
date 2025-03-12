@@ -40,7 +40,6 @@ export const createNavBar = () => {
             }
             else if (anchor.textContent == "Volver al Inicio") {
                 const sectionEvents = document.querySelector("#sectionEvents");
-                sectionEvents.classList.remove("singleEvent");
                 if (sectionEvents.classList.contains("myEventsSignedUp")) {
                     sectionEvents.classList.remove("myEventsSignedUp")
                 }
