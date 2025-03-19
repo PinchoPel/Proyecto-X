@@ -19,7 +19,7 @@
     --basic-letter-color: rgb(167, 54, 5);
     --basic-input-color: rgb(236, 234, 171);
     --basic-button-color: rgb(230, 191, 127);
-    --error-message-color: rgb(255,0,0);
+    --error-message-color: rgb(7, 21, 173);
   }
   html{
     scroll-behavior: smooth;

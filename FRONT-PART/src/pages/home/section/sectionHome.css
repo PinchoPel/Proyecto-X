@@ -78,6 +78,12 @@
 .selectEvent{
     font-size: 25px;
 }
+.internalError{
+    font-size: 40px;
+    width: 400px;
+    text-align: center;
+    font-weight: 900;
+}
 /*1050px*/
 @media(max-width: 1050px){
     #sectionEvents h2{
@@ -169,6 +175,10 @@
     .selectEvent{
         font-size: 16px;
     }
+    .internalError{
+        font-size: 30px;
+        width: 300px;
+    }
 }
 
 /*600px*/
@@ -231,6 +241,10 @@
         width: 290px;
         padding: 0px;
     }
+    .internalError{
+        margin-left: 100px;
+        margin-top: 50px;
+     }
 }
 
 /*450px*/
@@ -264,6 +278,11 @@
     }
     .selectEvent{
         font-size: 12px;
+    }
+    .internalError{
+        font-size: 20px;
+        width: 200px;
+        margin-left: 50px;
     }
 }
 /*330*/

@@ -1,4 +1,5 @@
 import { createEvent } from "../../../pages/createEvent/createEventElements.js";
+import { getUserName } from "../../../pages/infoEvents/getUserName.js";
 import { sectionLogin } from "../../../pages/login-register/sectionLogin.js";
 import { renderSignedUpEvent } from "../../../pages/myEvents.js/signedUpEvents.js";
 import { fetchUser } from "../../../pages/myProfile/fetchUser.js";
@@ -12,8 +13,9 @@ export const createNavBar = () => {
     const aLogin = document.createElement("a");
     linkCSS("./src/componentes/header/navBar/navBar.css");
     const arrayAnchor = ["Mi perfil", "Crear evento", "Mis eventos", "Cerrar sesión"];
+    const userName = getUserName();
 
-    if (localStorage.getItem("userToken")) {
+    if (localStorage.getItem("userToken") && userName !== null) {
         const ulLoggedNavBar = document.createElement("ul");
             for (let index = 0; index < arrayAnchor.length; index++) {
                 const liLoggedNavbar = document.createElement("li");

@@ -8,13 +8,7 @@ const auth = async (req,res,next) => {
             let {id} = verifyToken(token);
             let user = await User.findById(id);
             req.user = user;
-            let {role} = req.user;
-                if (role === "admin") {
-                    return next();
-                }
-                else if (role === "user") {
-                    return next();
-                }
+            return next();
         }
         else if (!req.headers.authorization) {  
             return next();

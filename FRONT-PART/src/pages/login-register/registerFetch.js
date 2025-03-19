@@ -17,6 +17,13 @@ export const registerFetch = async (userName, email, password) => {
             });
             if (!response.ok) {
                 const error = await response.json();
+                if (error == "Nombre de usuario o contraseña incorrectos" && !document.querySelector(".errorLoginMessage")) {
+                    const divLogin = document.querySelector("#divRegister");
+                    const errorFormMessage = document.createElement("p");
+                    errorFormMessage.classList.add( "errorLoginMessage", "errorFormMessage");
+                    errorFormMessage.textContent = error;
+                    divLogin.append(errorFormMessage);
+                }
                 errorRegisterForm(error, "#divRegister");
                 return;
             }
