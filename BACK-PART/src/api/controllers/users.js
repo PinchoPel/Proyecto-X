@@ -36,7 +36,7 @@ const register = async (req,res,next) => {
                 return res.status(400).json("Nombre de usuario o contraseña incorrectos");
             }
             else if (correctPassword && user) {
-                const token = generateSign(user._id);       
+                const token = generateSign(user);       
                 return res.status(200).json({user, token});
             }
         }
@@ -68,7 +68,7 @@ const register = async (req,res,next) => {
             });
             let userSaved = await newUser.save();    
             welcomeEmail(userSaved.email, userSaved.userName);
-            const token = generateSign(userSaved._id);
+            const token = generateSign(userSaved);
             return res.status(201).json({userSaved, token});
         }
     } catch (error) {
