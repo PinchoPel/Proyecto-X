@@ -9,7 +9,7 @@ export const deleteMyProfile = async () => {
         const userId = document.querySelector("#userId");
         const userName = document.querySelector("#myUserName");
         
-        const response = await fetchFunction("DELETE", `/users/deleteProfile/${userId.textContent}/${userName.value}`, {"Content-Type": "application/json", ...auth})
+        const response = await fetchFunction("DELETE", `users/deleteProfile/${userId.textContent}/${userName.value}`, {"Content-Type": "application/json", ...auth})
 
         await response.json();
         localStorage.removeItem("userToken");
