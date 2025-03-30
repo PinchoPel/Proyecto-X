@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 import { fetchUser } from "./fetchUser.js";
 import { renderMyProfile } from "./myProfileElements.js";
@@ -8,13 +9,8 @@ export const fetchModifyProfile = async (route, formSelector) => {
         const userId = document.querySelector("#userId");
         const token = localStorage.getItem("userToken");
         const modifyProfileForm = new FormData(document.querySelector(formSelector));
-        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/users/${route}/${userId.textContent}`,{
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            },
-            body: modifyProfileForm
-        })
+
+        const response = await fetchFunction( "PUT", `users/${route}/${userId.textContent}`, { "Authorization": `Bearer ${token}`}, modifyProfileForm )
         
         if (response.ok) {
             const userModified =  await response.json();

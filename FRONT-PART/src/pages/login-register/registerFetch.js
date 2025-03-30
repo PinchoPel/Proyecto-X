@@ -1,20 +1,13 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 import { errorRegisterForm } from "./errorRegisterForm.js";
 
 export const registerFetch = async (userName, email, password) => { 
     try {
         loadScreen();
-        const response = await fetch("https://proyecto-x-backend.vercel.app/api/v1/users/register",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json" 
-                },
-            body: JSON.stringify({
-                userName,
-                email,
-                password
-                })
-            });
+        
+        const response = await fetchFunction("POST", "users/register", {                "Content-Type": "application/json" },  JSON.stringify({userName, email, password}))
+
             if (!response.ok) {
                 const error = await response.json();
                 if (error == "Nombre de usuario o contraseña incorrectos" && !document.querySelector(".errorLoginMessage")) {

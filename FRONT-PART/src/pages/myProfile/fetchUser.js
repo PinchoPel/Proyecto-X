@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 
 const token = localStorage.getItem("userToken");
@@ -6,12 +7,9 @@ const auth= token ? { "Authorization": `Bearer ${token}` } : {};
 export const fetchUser = async (route) => {
     try {
         loadScreen();
-        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/users/${route}`, {
-            method: "GET",
-            headers:
-            {"Content-Type": "application/json",
-            ...auth}
-        });
+
+        const response = await fetchFunction("GET", `users/${route}`, {"Content-Type": "application/json", ...auth})
+
         const user = await response.json();
         setTimeout(() => {
             if (!document.querySelector("#divMyProfile")) {

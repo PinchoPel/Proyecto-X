@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 
 export const fetchDeleteEvent = async (eventId) => {
@@ -6,12 +7,8 @@ export const fetchDeleteEvent = async (eventId) => {
         const token = localStorage.getItem("userToken");
         const auth= token ? { "Authorization": `Bearer ${token}` } : {};
     
-        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/deleteEvent/${eventId}`, {
-            method: "DELETE",
-            headers:
-            {"Content-Type": "application/json",
-            ...auth}
-        })
+        const response = await fetchFunction( "DELETE", `events/deleteEvent/${eventId}`, {"Content-Type": "application/json", ...auth})
+
         await response.json();
         location.reload();
     } catch (error) {

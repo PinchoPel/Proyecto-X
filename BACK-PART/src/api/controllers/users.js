@@ -107,7 +107,7 @@ const modifyImageUser = async (req, res, nest) => {
             { new: true, runValidators: true }
           );
           const token =  generateSign(updatedUser);
-          return res.status(200).json({updatedUser, token});
+        return res.status(200).json({updatedUser, token});
     } catch (error) {
         return res.status(400).json("No ha sido posible actualizar el perfil")
     }

@@ -1,18 +1,12 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 
 export const loginFetch = async (userNameEmail, password) => {
     try {
         loadScreen();
-        const response = await fetch("https://proyecto-x-backend.vercel.app/api/v1/users/login",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json" 
-                },
-            body: JSON.stringify({
-                userNameEmail,
-                password
-                })
-            });
+
+        const response = await fetchFunction( "POST", `users/login`, { "Content-Type": "application/json" },  JSON.stringify({userNameEmail, password}))
+
         if (!response.ok) {
             const error = await response.json();
             if (!document.querySelector(".errorLoginMessage")) {

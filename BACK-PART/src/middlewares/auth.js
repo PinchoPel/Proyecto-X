@@ -10,9 +10,6 @@ const auth = async (req,res,next) => {
             req.user = user;
             return next();
         }
-        else if (!req.headers.authorization) {  
-            return next();
-        }
     } catch (error) {
         return res.status(400).json("error de verificación")
     }   

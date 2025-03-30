@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { linkCSS } from "../../componentes/common/linkCSS.js";
 import { multiselectionTag } from "../createEvent/multiselectionTag.js";
 import { previousSight } from "../createEvent/previousSight.js";
@@ -75,13 +76,9 @@ export const modifySingleEvent = async (eventId) => {
             selectedTags.forEach(opcion => {
                 modifyEventForm.append("tags[]", opcion);
             });  
-            const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/modifyEvent/${eventId}`,{
-                method: "PUT",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                },
-                body: modifyEventForm
-            });
+
+            const response = await fetchFunction("PUT", `events/modifyEvent/${eventId}`, { "Authorization": `Bearer ${token}`}, modifyEventForm)
+
                 await response.json();
                 await infoSingleEvent(eventId);
         };          

@@ -119,11 +119,12 @@ export const infoSingleEvent = async  (eventId) => {
     divActionsButtons.id = "divActionsButtons";
     returnHomeButton.id = "returnFromEvent";
     returnHomeButton.textContent = "Cerrar evento";
-    for (let index = 0; index < singleEvent.tags.length; index++) {
+    let setTagsEvents = new Set( singleEvent.tags);
+    setTagsEvents.forEach(eachTag => {
         const tagEvent = document.createElement("p");
-        tagEvent.textContent = singleEvent.tags[index];
+        tagEvent.textContent = eachTag;
         divTags.append(tagEvent);
-    };
+    });
     belowDiv.append(divTags, description, descriptionEvent);
     titleEventEnlarged.insertAdjacentElement("beforebegin", author);
     author.insertAdjacentElement("afterend", authorEvent);

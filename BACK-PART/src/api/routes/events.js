@@ -4,11 +4,11 @@ const { postEvent, getSingleEvent, getEvents, deleteEvent, modifyEvent, searchBy
 
 const eventRoutes = require("express").Router();
 
-eventRoutes.get("/:id",[auth], getSingleEvent);
-eventRoutes.get("/eventstag/:tag",[auth], searchByTag);
-eventRoutes.get("/eventlocation/:province",[auth], searchByLocation);
-eventRoutes.get("/rangedates/:startDate/to/:endDate", [auth], searchByRangeDate);
-eventRoutes.get("/orderdates/:order",[auth], getEvents);
+eventRoutes.get("/:id", getSingleEvent);
+eventRoutes.get("/eventstag/:tag", searchByTag);
+eventRoutes.get("/eventlocation/:province", searchByLocation);
+eventRoutes.get("/rangedates/:startDate/to/:endDate",  searchByRangeDate);
+eventRoutes.get("/orderdates/:order", getEvents);
 eventRoutes.get("/mysite/myevents", [auth], getMyEvents);
 eventRoutes.get("/mysite/createdEvents", [auth], getMyCreatedEvents);
 

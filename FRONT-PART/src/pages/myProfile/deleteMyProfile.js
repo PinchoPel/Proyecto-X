@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent } from "../../componentes/common/loadScreen.js";
 
 const token = localStorage.getItem("userToken");
@@ -8,12 +9,8 @@ export const deleteMyProfile = async () => {
         const userId = document.querySelector("#userId");
         const userName = document.querySelector("#myUserName");
         
-        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/users/deleteProfile/${userId.textContent}/${userName.value}`, {
-            method: "DELETE",
-            headers:
-            {"Content-Type": "application/json",
-            ...auth}
-        })
+        const response = await fetchFunction("DELETE", `/users/deleteProfile/${userId.textContent}/${userName.value}`, {"Content-Type": "application/json", ...auth})
+
         await response.json();
         localStorage.removeItem("userToken");
         location.reload();

@@ -5,6 +5,7 @@ import { renderSignedUpEvent } from "../../../pages/myEvents.js/signedUpEvents.j
 import { fetchUser } from "../../../pages/myProfile/fetchUser.js";
 import { renderMyProfile } from "../../../pages/myProfile/myProfileElements.js";
 import { linkCSS } from "../../common/linkCSS.js";
+import { getUserId } from "../../common/userId.js";
 import { waitForDOM } from "../../common/waitForDOM.js";
 import { returnHome } from "./returnHome.js";
 
@@ -13,9 +14,9 @@ export const createNavBar = () => {
     const aLogin = document.createElement("a");
     linkCSS("./src/componentes/header/navBar/navBar.css");
     const arrayAnchor = ["Mi perfil", "Crear evento", "Mis eventos", "Cerrar sesión"];
-    const userName = getUserName();
+    const userId = getUserId();
 
-    if (localStorage.getItem("userToken") && userName !== null) {
+    if (localStorage.getItem("userToken") && userId !== null) {
         const ulLoggedNavBar = document.createElement("ul");
             for (let index = 0; index < arrayAnchor.length; index++) {
                 const liLoggedNavbar = document.createElement("li");
@@ -92,11 +93,12 @@ export const createNavBar = () => {
             location.reload();
         })});
     }
-    else{
+    else if(!localStorage.getItem("userToken") || userId == null){
+        localStorage.removeItem("userToken");
         aLogin.href = "#";
         aLogin.textContent = "Inicio de sesión/Registro";
         aLogin.addEventListener("click", sectionLogin);
-        nav.append(aLogin);
+        nav.append(aLogin);       
     }
     return nav;
 };

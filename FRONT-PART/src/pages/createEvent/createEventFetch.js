@@ -1,3 +1,4 @@
+import { fetchFunction } from "../../componentes/common/fetchFunction.js";
 import { loadedContent, loadScreen } from "../../componentes/common/loadScreen.js";
 import { eventsFetch } from "../home/section/eventsFetch.js";
 import { renderEvents } from "../home/section/renderEvents.js";
@@ -12,13 +13,9 @@ export const createEventFetch = async (selected) => {
         selected.forEach(opcion => {
             createEventForm.append("tags[]", opcion);
         });  
-        const response = await fetch(`https://proyecto-x-backend.vercel.app/api/v1/events/newEvent`,{
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            },
-            body: createEventForm
-        })
+
+        const response = await fetchFunction("POST", `events/newEvent`, { "Authorization": `Bearer ${token}`}, createEventForm)
+
             await response.json();
     
         if (response.ok) {
